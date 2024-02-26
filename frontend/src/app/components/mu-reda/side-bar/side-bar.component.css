@@ -1,0 +1,8 @@
+.list-group {
+  border-radius: 10px; /* Add border radius */
+}
+.list-group-item:hover {
+color: #f8f9fa;
+  background-color: #3a3d3f; /* Change background color on hover */
+  border-radius: 10px; /* Add border radius */
+}
