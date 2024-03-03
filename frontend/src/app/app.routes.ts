@@ -10,15 +10,11 @@ import { NotfoundComponent } from './compon_mk/notfound/notfound.component';
 export const routes: Routes = [
 
     {path:'',component:MainPageComponent},
-    {path:'details',component:PageDetailsComponent},
+    {path:'products/details',component:PageDetailsComponent},
     {path:'profile',component:ProfileComponent},
-
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'contact', component: ContactComponent },
-    // { path: 'notfound', component: NotFoundComponent },
-    // { path: '**', redirectTo: '/notfound' }
-
     { path: 'notfound', component: NotfoundComponent },
     { path: '**', redirectTo: '/notfound' }
 
