@@ -111,3 +111,24 @@ li {
         margin-right: 40px
     }
 }
+.inline-list li {
+    display: inline-block;
+    margin-right: 10px; /* Adjust margin as needed */
+}
+@media (max-width: 800px) {
+    .container-body .row.r3 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container-body .col-md-7 {
+        width: auto;
+        height: auto;
+        margin: 0;
+    }
+
+    .container-body .col-md-5 {
+        width: auto;
+        margin: 20px 0;
+    }
+}
