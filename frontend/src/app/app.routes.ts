@@ -21,5 +21,5 @@ export const routes: Routes = [
     { path: 'contact', component: ContactComponent, title: "Contact"},
     { path: 'notfound', component: NotfoundComponent, title: "Not Found"},
     { path: '**', redirectTo: '/notfound' }
-
+  
 ];
