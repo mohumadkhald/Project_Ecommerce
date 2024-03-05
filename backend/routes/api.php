@@ -4,8 +4,10 @@ use App\Http\Controllers\Api\BrandsController;
 use App\Http\Controllers\Api\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\postController;
+use App\Http\Controllers\Api\productController;
 use App\Http\Controllers\Api\erequestController;
+use App\Http\Controllers\Api\cartController;
+use App\Http\Controllers\Api\purchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +47,45 @@ Route::post('/sanctum/token', function (Request $request) {
     return $user->createToken($request->device_name)->plainTextToken;
 });
 
+
+Route::prefix('products')->middleware('auth:sanctum')->group(function (){
+Route::get('', [productController::class, 'getProducts']);
+Route::get('my', [productController::class, 'getMyProducts']);
+Route::post('', [productController::class, 'addProduct']);
+Route::put('/{id}', [productController::class, 'updateProduct']);
+Route::delete('/{id}', [productController::class, 'deleteProduct']);
+Route::get('{id}', [productController::class, 'getProduct']);
+});
+
+Route::prefix('erequests')->middleware('auth:sanctum')->group(function (){
+Route::get('/sent', [erequestController::class, 'sentErequest']);
+Route::get('/received', [erequestController::class, 'receivedErequest']);
+Route::get('my', [postController::class, 'getMyPosts']);
+Route::post('/{id1}/{id2}', [erequestController::class, 'addErequest']);
+Route::put('/{id}/accept', [erequestController::class, 'acceptERequest']);
+Route::put('/{id}/reject', [erequestController::class, 'rejectERequest']);
+Route::delete('/{id}', [erequestController::class, 'deletePost']);
+Route::get('{id}', [postController::class, 'showImage']);
+});
+
+Route::prefix('cart')->middleware('auth:sanctum')->group(function (){
+Route::post('/{id}', [cartController::class, 'add']);
+Route::put('increase/{id}', [cartController::class, 'increase']);
+Route::put('decrease/{id}', [cartController::class, 'decrease']);
+Route::get('/my', [cartController::class, 'myCart']);
+Route::delete('/{id}', [cartController::class, 'delete']);
+// Route::get('{id}', [cartController::class, 'getProduct']);
+});
+
+Route::prefix('purchase')->middleware('auth:sanctum')->group(function (){
+Route::get('', [purchaseController::class, 'getPurchases']);
+Route::get('my', [purchaseController::class, 'getMyProducts']);
+Route::post('', [purchaseController::class, 'addPurchase']);
+Route::put('/{id}', [purchaseController::class, 'deliveredPurchase']);
+Route::delete('/{id}', [purchaseController::class, 'deleteProduct']);
+Route::get('{id}', [purchaseController::class, 'getPurchase']);
+});
+=======
 Route::prefix('posts')->middleware('auth:sanctum')->group(function () {
     Route::get('', [postController::class, 'getPosts']);
     Route::get('my', [postController::class, 'getMyPosts']);
@@ -83,4 +124,5 @@ Route::prefix('categories')->middleware('auth:sanctum')->group(function () {
     Route::put('update_category/{id}', [CategoryController::class, 'update_category']);
     Route::delete('delete_category/{id}', [CategoryController::class, 'delete_category']);
 });
+
 
