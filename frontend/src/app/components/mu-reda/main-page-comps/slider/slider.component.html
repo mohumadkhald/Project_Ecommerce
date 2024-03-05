@@ -1,1 +1,41 @@
-<p>slider works!</p>
+<div class="m-5 ">
+  <div class="row ">
+    <div class="col">
+      <div class="bbb_main_container">
+        <div class="bbb_viewed_title_container">
+          <h3 class="bbb_viewed_title">Best selling products</h3>
+          <div class="bbb_viewed_nav_container">
+            <div class="bbb_viewed_nav bbb_viewed_prev"><i class="fas fa-chevron-left"
+                style="text-shadow: 2px 2px 10px  #0453ff; color: rgb(183, 220, 18);"></i></div>
+            <div class="bbb_viewed_nav bbb_viewed_next"><i class="fas fa-chevron-right"></i></div>
+          </div>
+        </div>
+        <div class="bbb_viewed_slider_container">
+          <div class="owl-carousel owl-theme bbb_viewed_slider row">
+
+
+            <div class="col " *ngFor="let product of products; let i=index">
+
+
+              <div class="owl-item ">
+                <div class="bbb_viewed_image"><img src="../../../../../assets/{{i+1}}.png" alt=""
+                    style="height:200px; width:250px;"></div>
+                <div class="bbb_viewed_content text-center "
+                  >
+                  <div class="bbb_viewed_price text-white" >
+                    ${{product.price}}<span>${{1.25*product.price}}</span></div>
+                  <div class="bbb_viewed_name" style="text-shadow: 2px 2px 10px  #0453ff; color: rgb(4, 98, 240);">
+                    <a href="#" class="text-decoration-none text-white" >{{product.name}}</a></div>
+                </div>
+                <ul class="item_marks">
+                  <li class="item_mark item_new">new</li>
+                </ul>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
