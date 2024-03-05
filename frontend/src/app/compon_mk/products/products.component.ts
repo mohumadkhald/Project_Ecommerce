@@ -20,8 +20,9 @@ export class ProductsComponent implements OnInit {
   ngOnInit(){
     this.ProductsService.getProductsList().subscribe((res: any) => {
       // Assuming the response structure is { products: [], total: number, skip: number, limit: number }
-      if (res && res.products && res.products.length > 0) {
-        this.products = res.products;
+      console.log(res.data);
+      if (res && res.data && res.data.length > 0) {
+        this.products = res.data;
         console.log(this.products);
       } else {
         console.error('No products found in the response.');

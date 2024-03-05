@@ -6,11 +6,10 @@
       <p style="border-radius: 20px;" class="bg-danger m-2 p-2 col-md-5 text-center text-light">Out of Stock</p>
     </ng-template>
 
-    <img style="height: 240px;" class="img-fluid p-3" src="{{productItem.thumbnail}}" (click)="redirectToDetails(productItem.id)" alt="{{productItem.title}}">
-
+    <img style="height: 240px;" class="img-fluid p-3" src="http://127.0.0.1:8001/assets/uploads/categor_ies/{{ productItem.image }}" (click)="redirectToDetails(productItem.id)" alt="{{productItem.title}}">
     <div class="m-1 p-2">
       <div class="row">
-        <h5 class="card-title col-8 col-md-8" style="cursor: pointer;" (click)="redirectToDetails(productItem.id)">{{productItem.title}}</h5>
+        <h5 class="card-title col-8 col-md-8" style="cursor: pointer;" (click)="redirectToDetails(productItem.id)">{{productItem.name}}</h5>
         <p class="card-text col-4 col-md-4">{{ productItem.price | currency }}</p>
       </div>
       <p style="height: 45px; overflow: hidden;" class="card-text me-1">{{productItem.description}}</p>
