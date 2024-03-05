@@ -9,18 +9,11 @@ export class ProductsService {
   constructor(private http: HttpClient) { }
 
   getProductsList(){
-    return this.http.get('https://dummyjson.com/products' , {
-      params: {
-        name : 'super'
-      },
-      headers: {
-        'Autherization': 'TOKEN'
-      }
-    })
+    return this.http.get('http://127.0.0.1:8001/api/categories/index')
   }
 
   getProductsDetails(id : number){
-    return this.http.get(`https://dummyjson.com/products/${id}`)
+    return this.http.get(`http://127.0.0.1:8001/api/brands/${id}`)
   }
 
 }
