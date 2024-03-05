@@ -11,7 +11,8 @@ import { MainPageComponent } from './components/mu-reda/main_page/main-page.comp
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,NavbarComponent, MainPageComponent,FooterComponent],
+  imports: [CommonModule, RouterOutlet,NavbarComponent, MainPageComponent,FooterComponent
+    ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
