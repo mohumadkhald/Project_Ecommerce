@@ -1,0 +1,27 @@
+<div class="col m-2">
+  <div style="height: 28.5rem;" class="card">
+    <p style="border-radius: 20px;" class="bg-primary text-center col-3 m-2 col-md-3 text-light" *ngIf="productItem.stock > 0; else outStock">In Stock
+    </p>
+    <ng-template #outStock>
+      <p style="border-radius: 20px;" class="bg-danger m-2 p-2 col-md-5 text-center text-light">Out of Stock</p>
+    </ng-template>
+
+    <img style="height: 240px;" class="img-fluid p-3" src="{{productItem.thumbnail}}" (click)="redirectToDetails(productItem.id)" alt="{{productItem.title}}">
+
+    <div class="m-1 p-2">
+      <div class="row">
+        <h5 class="card-title col-8 col-md-8" style="cursor: pointer;" (click)="redirectToDetails(productItem.id)">{{productItem.title}}</h5>
+        <p class="card-text col-4 col-md-4">{{ productItem.price | currency }}</p>
+      </div>
+      <p style="height: 45px; overflow: hidden;" class="card-text me-1">{{productItem.description}}</p>
+      
+      <!-- Display Rating and Add to Cart in the same line -->
+      <div class="row align-items-center m-2">
+        <button class="btn btn-primary col-6 col-md-6 mb-2 me-md-0" (click)="addToCart(productItem)">Add to Cart</button>
+        <p class="card-text col-5 col-md-5 mt-1 me-md-3 me-1">
+          <ngb-rating [rate]="productItem.rating" />
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

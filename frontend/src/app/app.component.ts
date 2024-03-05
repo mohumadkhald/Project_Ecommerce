@@ -1,26 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-<<<<<<< HEAD
-import { MainPageComponent } from './components/mu-reda/main-page/main-page.component';
-import { HeaderComponent } from './components/mu-reda/main-page-comps/header/header.component';
-=======
-import { HeaderComponent } from './components/mu-reda/header/header.component';
-import { NavbarComponent } from './components/mu-reda/navbar/navbar.component';
-import { SideBarComponent } from './components/mu-reda/side-bar/side-bar.component';
-import { SideBarSlidersComponent } from './components/mu-reda/side-bar-sliders/side-bar-sliders.component';
-import { FooterComponent } from './components/mu-reda/footer/footer.component';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from './components/mu-reda/main-page-comps/navbar/navbar.component';
 import { MainPageComponent } from './components/mu-reda/main_page/main-page.component';
->>>>>>> main
+import { FooterComponent } from './components/mu-reda/main-page-comps/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-<<<<<<< HEAD
-  imports: [RouterOutlet, MainPageComponent,HeaderComponent],
-=======
-  imports: [CommonModule, RouterOutlet,NavbarComponent, MainPageComponent,FooterComponent],
->>>>>>> main
+
+  imports: [CommonModule, RouterOutlet, NavbarComponent, MainPageComponent, FooterComponent],
+
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
