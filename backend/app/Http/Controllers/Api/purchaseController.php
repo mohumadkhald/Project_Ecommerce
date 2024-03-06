@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\PurchasedProduct;
 use App\Models\AddedToCartProduct;
 use App\Models\Purchase;
+use App\Models\Product;
 use App\Models\User;
+use App\Http\Resources\purchaseResource;
 
 class purchaseController extends Controller
 {
@@ -29,8 +31,34 @@ class purchaseController extends Controller
         'product_id' => $carted->product_id,
         'buyer_id' => $carted->buyer_id,
         'quantity' => $carted->quantity,
-        'purchase_id' => $purchase->id // Replace 'your_value' with the actual value for the new column
+        'purchase_id' => $purchase->id,
+        'references' => $carted->product_id
     ]);
+
+    // if($purchaed->quantity == $carted->product->quantity) 
+    // {
+    //     $carted->product->quantity=0 ;
+    //     $carted->product->save();
+    // }
+    
+    // else {
+        // dd($carted->product);
+        $newrecord = Product::create([
+        'user_id' => $carted->product->user_id,
+        'description' => $carted->product->description,
+        'title' => $carted->product->title,
+        'image' => $carted->product->image, // Replace 'your_value' with the actual value for the new column
+        'price' => $carted->product->price,
+        'quantity' => 0,
+        'hidden' => 'yes'
+    ]);
+    // dd($newrecord);
+        $carted->product->quantity-=$purchaed->quantity;
+        $carted->product->save();
+        $purchaed->product_id = $newrecord->id;
+        $purchaed->save();
+        // $purchaed->quantity = $newrecord->id;
+    // }
 
     $purchaeds->push($purchaed);
 
@@ -50,8 +78,7 @@ class purchaseController extends Controller
         $user = User::find(Auth::id()); // Replace $userId with the actual user ID
         // dd($user);
         $purchases = $user->purchases()->with('purchasedProducts')->get();
-
-        return $purchases;
+        return purchaseResource::collection($purchases);
     }
 
     public function deliveredPurchase($id){
@@ -62,5 +89,10 @@ class purchaseController extends Controller
         $purchase->state = 'delivered';
         $purchase->save();
         return $purchase;
+    }
+
+    public function getUser(){
+        $user = User::find(Auth::id());
+        return  $user;
     }
 }
