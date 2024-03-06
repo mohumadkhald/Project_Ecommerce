@@ -50,7 +50,7 @@ class CategoryController extends Controller
                 return response()->json('An error occurred while processing your request', 500);
             }
 
-            $category->image = 'backend' . '/' . 'public' . '/' . $path . $fileName;
+            $category->image = $path . $fileName;
             $category->name = $request->name;
             $category->save();
             return response()->json('category added successfully', 201);
@@ -82,7 +82,7 @@ class CategoryController extends Controller
                         return response()->json('An error occurred while processing your request', 500);
                     }
 
-                    Categories::where('id', $id)->update(['image' => 'backend' . '/' . 'public' . '/' . $path . $fileName]);
+                    Categories::where('id', $id)->update(['image' => $path . $fileName]);
 
                 }
 
