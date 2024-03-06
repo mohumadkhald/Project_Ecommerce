@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AddedToCartProduct;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\cartResource;
 
 
 class cartController extends Controller
@@ -64,7 +65,7 @@ class cartController extends Controller
         $userId = Auth::id();
         $carteds = AddedToCartProduct::where('buyer_id', $userId)->get();
         if($carteds->isEmpty()) return 'no items in cart';
-        return $carteds;
+        return cartResource::collection($carteds);
     }
 
     public function delete($id, Request $request){

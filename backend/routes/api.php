@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\productController;
 use App\Http\Controllers\Api\erequestController;
 use App\Http\Controllers\Api\cartController;
 use App\Http\Controllers\Api\purchaseController;
+use App\Http\Controllers\Api\ratingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,32 +80,32 @@ Route::delete('/{id}', [cartController::class, 'delete']);
 
 Route::prefix('purchase')->middleware('auth:sanctum')->group(function (){
 Route::get('', [purchaseController::class, 'getPurchases']);
-Route::get('my', [purchaseController::class, 'getMyProducts']);
+// Route::get('my', [purchaseController::class, 'getMyProducts']);
 Route::post('', [purchaseController::class, 'addPurchase']);
 Route::put('/{id}', [purchaseController::class, 'deliveredPurchase']);
-Route::delete('/{id}', [purchaseController::class, 'deleteProduct']);
-Route::get('{id}', [purchaseController::class, 'getPurchase']);
+// Route::delete('/{id}', [purchaseController::class, 'deleteProduct']);
+// Route::get('{id}', [purchaseController::class, 'getPurchase']);
 });
-=======
-Route::prefix('posts')->middleware('auth:sanctum')->group(function () {
-    Route::get('', [postController::class, 'getPosts']);
-    Route::get('my', [postController::class, 'getMyPosts']);
-    Route::post('', [postController::class, 'addPost']);
-    Route::put('/{id}', [postController::class, 'updatePost']);
-    Route::delete('/{id}', [postController::class, 'deletePost']);
-    Route::get('{id}', [postController::class, 'getPost']);
-});
-
-Route::prefix('erequests')->middleware('auth:sanctum')->group(function () {
-    Route::get('/sent', [erequestController::class, 'sentErequest']);
-    Route::get('/received', [erequestController::class, 'receivedErequest']);
-    Route::get('my', [postController::class, 'getMyPosts']);
-    Route::post('/{id1}/{id2}', [erequestController::class, 'addErequest']);
-    Route::put('/{id}/accept', [erequestController::class, 'acceptERequest']);
-    Route::put('/{id}/reject', [erequestController::class, 'rejectERequest']);
-    Route::delete('/{id}', [erequestController::class, 'deletePost']);
-    Route::get('{id}', [postController::class, 'showImage']);
-});
+//=======
+// Route::prefix('posts')->middleware('auth:sanctum')->group(function () {
+//     Route::get('', [postController::class, 'getPosts']);
+//     Route::get('my', [postController::class, 'getMyPosts']);
+//     Route::post('', [postController::class, 'addPost']);
+//     Route::put('/{id}', [postController::class, 'updatePost']);
+//     Route::delete('/{id}', [postController::class, 'deletePost']);
+//     Route::get('{id}', [postController::class, 'getPost']);
+// });
+Route::middleware('auth:sanctum')->get('user', [purchaseController::class, 'getUser']);
+// Route::prefix('erequests')->middleware('auth:sanctum')->group(function () {
+//     Route::get('/sent', [erequestController::class, 'sentErequest']);
+//     Route::get('/received', [erequestController::class, 'receivedErequest']);
+//     Route::get('my', [postController::class, 'getMyPosts']);
+//     Route::post('/{id1}/{id2}', [erequestController::class, 'addErequest']);
+//     Route::put('/{id}/accept', [erequestController::class, 'acceptERequest']);
+//     Route::put('/{id}/reject', [erequestController::class, 'rejectERequest']);
+//     Route::delete('/{id}', [erequestController::class, 'deletePost']);
+//     Route::get('{id}', [postController::class, 'showImage']);
+// });
 
 
 //Brand CRUD
@@ -121,8 +122,16 @@ Route::prefix('categories')->middleware('auth:sanctum')->group(function () {
     Route::get('/index', [CategoryController::class, 'index']);
     Route::get('/show/{id}', [CategoryController::class, 'show']);
     Route::post('/store', [CategoryController::class, 'store']);
-    Route::put('update_category/{id}', [CategoryController::class, 'update_category']);
+    Route::post('update_category/{id}', [CategoryController::class, 'update_category']);
     Route::delete('delete_category/{id}', [CategoryController::class, 'delete_category']);
+});
+
+Route::prefix('rate')->middleware('auth:sanctum')->group(function () {
+    Route::post('/{id}', [ratingController::class, 'addRating']);
+    // Route::get('/show/{id}', [CategoryController::class, 'show']);
+    // Route::post('/store', [CategoryController::class, 'store']);
+    // Route::put('update_category/{id}', [CategoryController::class, 'update_category']);
+    // Route::delete('delete_category/{id}', [CategoryController::class, 'delete_category']);
 });
 
 
