@@ -12,14 +12,8 @@ import { FooterComponent } from './component_mr/footer/footer.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnChanges {
+export class AppComponent   {
   title = 'prinder';
 
-  ngOnChanges(): void {
-    jQuery(document).ready(function(){
-      jQuery('#myCarousel').carousel({
-        interval: 2000, // Set interval to 2 seconds
-      });
-    });
-  }
+
 }

@@ -24,10 +24,14 @@
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
+<<<<<<< HEAD
 
     "primeflex": "^3.3.1",
 
     "jquery": "^3.7.1",
+=======
+    "primeflex": "^3.3.1",
+>>>>>>> d3e27861eadeb18928a3aa7b5a6e44a04dde190e
     "carousel": "^0.0.3",
     "primeng": "^17.9.0",
 
