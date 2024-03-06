@@ -13,6 +13,10 @@ class Product extends Model
         'user_id', // Foreign key to link to the User model
         'image',    // Image path or URL
         'description',
+        'title',
+        'quantity',
+        'price',
+        'hidden'
     ];
 
     // Define a relationship with the User model
