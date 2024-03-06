@@ -5,6 +5,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\productResource;
 
 class productController extends Controller
 {
@@ -13,22 +14,25 @@ class productController extends Controller
         $userId = Auth::id();
 // dd($userId);
     // Retrieve posts where user_id is not the authenticated user's ID
-    $products = Product::where('user_id', '!=', $userId)->get();
+    $products = Product::where('user_id', '!=', $userId)->WhereNull('hidden')->get();
     $products->each(function ($product) {
     $product->image_path = asset('storage/' . $product->image);
 });
-    return response()->json($products);
-    }
+// dd($products);
+    return productResource::collection($products);
+}
 
     public function getMyProducts(){ //seller
         $userId = Auth::id();
 // dd($userId);
     // Retrieve posts where user_id is not the authenticated user's ID
-    $products = Product::where('user_id', $userId)->get();
+    $products = Product::where('user_id', $userId)->WhereNull('hidden')->get();
     $products->each(function ($product) {
     $product->image_path = asset('storage/' . $product->image);
 });
-    return response()->json($products);
+    // return response()->json($products);
+    // dd($products);
+    return productResource::collection($products);
     }
 
     public function addProduct(Request $request){ //seller
@@ -62,7 +66,8 @@ class productController extends Controller
         $Product = Product::find($id);
         $Product->image_path = asset('storage/' . $Product->image);
         // $post->save();
-        return $Product;
+        // return $Product;
+        return new productResource($Product);
     }
 
 
