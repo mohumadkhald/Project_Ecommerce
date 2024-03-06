@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { ProfileComponent } from './compon_mk/profile/profile.component';
-import { MainPageComponent } from './components/mu-reda/main_page/main-page.component';
 import { PageDetailsComponent } from './compon_mk/page-details/page-details.component';
 import { ProductsComponent } from './compon_mk/products/products.component';
 import { LoginComponent } from './component_omar/login/login.component';
@@ -8,6 +7,7 @@ import { SignupComponent } from './component_omar/signup/signup.component';
 import { ContactComponent } from './component_omar/contact/contact.component';
 import { NotfoundComponent } from './compon_mk/notfound/notfound.component';
 import { CartComponent } from './compon_mk/cart/cart.component';
+import { MainPageComponent } from './component_mr/main-page/main-page.component';
 
 export const routes: Routes = [
 
@@ -21,5 +21,5 @@ export const routes: Routes = [
     { path: 'contact', component: ContactComponent, title: "Contact"},
     { path: 'notfound', component: NotfoundComponent, title: "Not Found"},
     { path: '**', redirectTo: '/notfound' }
-  
+
 ];
