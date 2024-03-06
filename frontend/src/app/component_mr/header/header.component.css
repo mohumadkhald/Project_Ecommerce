@@ -20,7 +20,7 @@ margin-bottom:15px;
 color:#d5d5d5;
 }
 #myCarousel .carousel-item a{background:#eae5e300; font-size:14px; color:#f8f8f8; padding:13px 32px; display:inline-block; }
-#myCarousel .carousel-item a:hover{background:#394fa2; text-decoration:none;  }
+#myCarousel .carousel-item a:hover{background:#510158; text-decoration:none;  }
 
 #myCarousel .carousel-item h4{-webkit-animation-name:fadeInLeft; animation-name:fadeInLeft;}
 #myCarousel .carousel-item p{-webkit-animation-name:slideInRight; animation-name:slideInRight;}
