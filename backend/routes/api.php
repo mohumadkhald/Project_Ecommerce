@@ -85,7 +85,6 @@ Route::put('/{id}', [purchaseController::class, 'deliveredPurchase']);
 Route::delete('/{id}', [purchaseController::class, 'deleteProduct']);
 Route::get('{id}', [purchaseController::class, 'getPurchase']);
 });
-=======
 Route::prefix('posts')->middleware('auth:sanctum')->group(function () {
     Route::get('', [postController::class, 'getPosts']);
     Route::get('my', [postController::class, 'getMyPosts']);
