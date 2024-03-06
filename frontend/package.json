@@ -25,12 +25,15 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "primeflex": "^3.3.1",
 =======
 
     "jquery": "^3.7.1",
 
 >>>>>>> 6cf3380a0bb493f0fb5347f23a553cb1b7808570
+=======
+>>>>>>> b30b144b5aec601ee7b841f37b60368c09ef9d69
     "carousel": "^0.0.3",
     "jquery": "^3.7.1",
     "primeng": "^17.9.0",
