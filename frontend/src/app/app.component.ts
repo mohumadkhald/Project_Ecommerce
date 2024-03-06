@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './component_mr/navbar/navbar.component';
@@ -12,6 +12,13 @@ import { FooterComponent } from './component_mr/footer/footer.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'prinder';
+  ngOnInit(): void {
+    jQuery(document).ready(function(){
+      jQuery('#myCarousel').carousel({
+        interval: 3000,
+      })
+    });
+  }
 }
