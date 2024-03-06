@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Product extends Model
 {
     use HasFactory;
 
@@ -13,6 +13,10 @@ class Post extends Model
         'user_id', // Foreign key to link to the User model
         'image',    // Image path or URL
         'description',
+        'title',
+        'quantity',
+        'price',
+        'hidden'
     ];
 
     // Define a relationship with the User model
