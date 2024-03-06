@@ -1,14 +1,17 @@
 
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
 import { NavbarComponent } from './component_mr/navbar/navbar.component';
 import { FooterComponent } from './component_mr/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,NavbarComponent,FooterComponent
-    ],
+
+
+  imports: [CommonModule, RouterOutlet, NavbarComponent, MainPageComponent, FooterComponent],
+
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
