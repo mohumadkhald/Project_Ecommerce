@@ -24,9 +24,6 @@
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
-
-    "jquery": "^3.7.1",
-
     "carousel": "^0.0.3",
     "jquery": "^3.7.1",
     "primeng": "^17.9.0",
