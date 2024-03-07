@@ -124,7 +124,7 @@ Route::prefix('categories')->middleware('auth:sanctum')->group(function () {
     Route::get('/index', [CategoryController::class, 'index']);
     Route::get('/show/{id}', [CategoryController::class, 'show']);
     Route::post('/store', [CategoryController::class, 'store']);
-    Route::put('update_category/{id}', [CategoryController::class, 'update_category']);
+    Route::post('update_category/{id}', [CategoryController::class, 'update_category']);
     Route::delete('delete_category/{id}', [CategoryController::class, 'delete_category']);
 });
 
