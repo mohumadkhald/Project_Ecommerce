@@ -18,6 +18,10 @@ class purchaseController extends Controller
         // dd($carteds->isEmpty());
         if($carteds->isEmpty()) return 'no items in cart';
 
+        foreach ($carteds as $carted) {
+            if($carted->quantity > $carted->product->quantity) return 'no enough products';
+        }
+        
         $purchase = purchase::create([
             'buyer_id'=> Auth::id(),
             'state'=>'not delivered'
@@ -34,30 +38,8 @@ class purchaseController extends Controller
         'purchase_id' => $purchase->id,
         'references' => $carted->product_id
     ]);
-
-    // if($purchaed->quantity == $carted->product->quantity) 
-    // {
-    //     $carted->product->quantity=0 ;
-    //     $carted->product->save();
-    // }
-    
-    // else {
-        // dd($carted->product);
-    //     $newrecord = Product::create([
-    //     'user_id' => $carted->product->user_id,
-    //     'description' => $carted->product->description,
-    //     'title' => $carted->product->title,
-    //     'image' => $carted->product->image, // Replace 'your_value' with the actual value for the new column
-    //     'price' => $carted->product->price,
-    //     'quantity' => 0,
-    //     'hidden' => 'yes'
-    // ]);
-    // dd($newrecord);
         $carted->product->quantity-=$purchaed->quantity;
         $carted->product->save();
-        // $decreasedProducts = AddedToCartProduct::where('product_id', '=', $carted->product->id)
-        // ->where('quantity', '>', $carted->product->quantity)
-        // ->update(['quantity' => $carted->product->quantity]);
         $productID = $carted->product->id;
         $productQ = $carted->product->quantity;
         $carted->delete();
@@ -83,33 +65,12 @@ foreach ($decreasedProducts as $product) {
         ]);
         // dd($user->cart);
     }
-    // dd($user->cart);
-
-    // Update the first column (quantity)
     $product->update([
         'quantity' => $productQ,
     ]);
     }
-
-
-        // $purchaed->product_id = $newrecord->id;
-        // $purchaed->save();
-        // $purchaed->quantity = $newrecord->id;
-    // }
-
     $purchaeds->push($purchaed);
-
-        // $q = $carted->quantity;
-        // $carted->delete();
-        // $carted->product->user->cart-=$q;
-        // $carted->product->user->save();
-
-        // $user = User::find($carted->buyer_id);
-        // $user->cart -= $q;
-        // $user->save();
 }
-
-
         return $purchaeds;
     }
 
@@ -119,7 +80,6 @@ foreach ($decreasedProducts as $product) {
         // dd($user);
         $purchases = $user->purchases()->with('purchasedProducts')->get();
         return $purchases;
-        // return purchaseResource::collection($purchases);
     }
 
     public function deliveredPurchase($id){
