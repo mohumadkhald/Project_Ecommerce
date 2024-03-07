@@ -1,15 +1,11 @@
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { CanActivateFn } from '@angular/router';
 
-export class AuthGuard implements CanActivate {
-  constructor(private router: Router) {}
-
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (localStorage.getItem('token')) {
-      return true;
-    }
-
-    // Navigate to the login page if user is not authenticated
-    this.router.navigate(['notfound']);
-    return false;
+export const authGuardGuard: CanActivateFn = (route, state) => {
+  if(localStorage.getItem('token')) {
+    return true;
+  } else if(localStorage.getItem('')) {
+    
   }
-}
+  state.url = '/login';
+  return false;
+};

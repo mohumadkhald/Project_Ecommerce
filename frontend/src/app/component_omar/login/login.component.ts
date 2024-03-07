@@ -1,20 +1,23 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,CheckboxModule, FormsModule],
+  imports: [ReactiveFormsModule, CommonModule, CheckboxModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+
+
 export class LoginComponent {
   device_name: string = "Unknown";
   errors: any = [];
@@ -46,9 +49,9 @@ console.log(formData);
 
           // Add token to local storage
           localStorage.setItem('token', loginResponse);
-
+          const headers = new HttpHeaders().set('Authorization', 'Bearer ' + loginResponse);
           // Navigate or update UI based on response
-          this.router.navigate(['user/profile'], { queryParams: { token: response } });
+          this.router.navigate(['user/profile'], { queryParams: { headers: response } });
         },
         error => {
           console.error('Login failed:', error);
