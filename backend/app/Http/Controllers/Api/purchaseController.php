@@ -28,7 +28,7 @@ class purchaseController extends Controller
         foreach ($carteds as $carted) {
     // Create a new record in the target table with the same values plus an additional column
     $purchaed = PurchasedProduct::create([
-        'product_id' => $carted->product_id,
+        // 'product_id' => $carted->product_id,
         'buyer_id' => $carted->buyer_id,
         'quantity' => $carted->quantity,
         'purchase_id' => $purchase->id,
@@ -43,30 +43,70 @@ class purchaseController extends Controller
     
     // else {
         // dd($carted->product);
-        $newrecord = Product::create([
-        'user_id' => $carted->product->user_id,
-        'description' => $carted->product->description,
-        'title' => $carted->product->title,
-        'image' => $carted->product->image, // Replace 'your_value' with the actual value for the new column
-        'price' => $carted->product->price,
-        'quantity' => 0,
-        'hidden' => 'yes'
-    ]);
+    //     $newrecord = Product::create([
+    //     'user_id' => $carted->product->user_id,
+    //     'description' => $carted->product->description,
+    //     'title' => $carted->product->title,
+    //     'image' => $carted->product->image, // Replace 'your_value' with the actual value for the new column
+    //     'price' => $carted->product->price,
+    //     'quantity' => 0,
+    //     'hidden' => 'yes'
+    // ]);
     // dd($newrecord);
         $carted->product->quantity-=$purchaed->quantity;
         $carted->product->save();
-        $purchaed->product_id = $newrecord->id;
-        $purchaed->save();
+        // $decreasedProducts = AddedToCartProduct::where('product_id', '=', $carted->product->id)
+        // ->where('quantity', '>', $carted->product->quantity)
+        // ->update(['quantity' => $carted->product->quantity]);
+        $productID = $carted->product->id;
+        $productQ = $carted->product->quantity;
+        $carted->delete();
+
+       $decreasedProducts = AddedToCartProduct::where('product_id', '=', $productID)
+    ->where('quantity', '>', $productQ)
+    ->get();
+
+    // $q = $carted->quantity;
+    $user = User::find($purchaed->buyer_id);
+    $user->cart -= $purchaed->quantity;
+    $user->save();
+    
+
+foreach ($decreasedProducts as $product) {
+    // Assuming there is a relationship method on AddedToCartProduct to access the RelatedModel
+    $user = User::find($product->buyer_id);
+    if ($user) {
+        // Update the second column
+        // dd($productQ);
+        $user->update([
+            'cart' => ($user->cart - ($product->quantity - $productQ)) // Replace 'another_column' and $anotherValue with your actual column and value
+        ]);
+        // dd($user->cart);
+    }
+    // dd($user->cart);
+
+    // Update the first column (quantity)
+    $product->update([
+        'quantity' => $productQ,
+    ]);
+    }
+
+
+        // $purchaed->product_id = $newrecord->id;
+        // $purchaed->save();
         // $purchaed->quantity = $newrecord->id;
     // }
 
     $purchaeds->push($purchaed);
 
-        $q = $carted->quantity;
-        // AddedToCartProduct::destroy($id);
-        $carted->delete();
-        $carted->product->user->cart-=$q;
-        $carted->product->user->save();
+        // $q = $carted->quantity;
+        // $carted->delete();
+        // $carted->product->user->cart-=$q;
+        // $carted->product->user->save();
+
+        // $user = User::find($carted->buyer_id);
+        // $user->cart -= $q;
+        // $user->save();
 }
 
 
@@ -78,7 +118,8 @@ class purchaseController extends Controller
         $user = User::find(Auth::id()); // Replace $userId with the actual user ID
         // dd($user);
         $purchases = $user->purchases()->with('purchasedProducts')->get();
-        return purchaseResource::collection($purchases);
+        return $purchases;
+        // return purchaseResource::collection($purchases);
     }
 
     public function deliveredPurchase($id){

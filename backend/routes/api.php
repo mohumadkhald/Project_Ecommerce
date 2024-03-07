@@ -54,7 +54,9 @@ Route::get('', [productController::class, 'getProducts']);
 Route::get('my', [productController::class, 'getMyProducts']);
 Route::post('', [productController::class, 'addProduct']);
 Route::put('/{id}', [productController::class, 'updateProduct']);
-Route::delete('/{id}', [productController::class, 'deleteProduct']);
+Route::put('/{id}/delete', [productController::class, 'deleteProduct']);
+Route::put('/{id}/restore', [productController::class, 'restoreProduct']);
+Route::delete('/{id}', [productController::class, 'terminateProduct']);
 Route::get('{id}', [productController::class, 'getProduct']);
 });
 

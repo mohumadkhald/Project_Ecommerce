@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\productResource;
+use App\Models\User;
 
 class productController extends Controller
 {
@@ -14,7 +15,7 @@ class productController extends Controller
         $userId = Auth::id();
 // dd($userId);
     // Retrieve posts where user_id is not the authenticated user's ID
-    $products = Product::where('user_id', '!=', $userId)->WhereNull('hidden')->get();
+    $products = Product::where('user_id', '!=', $userId)->WhereNull('deleted')->get();
     $products->each(function ($product) {
     $product->image_path = asset('storage/' . $product->image);
 });
@@ -26,7 +27,7 @@ class productController extends Controller
         $userId = Auth::id();
 // dd($userId);
     // Retrieve posts where user_id is not the authenticated user's ID
-    $products = Product::where('user_id', $userId)->WhereNull('hidden')->get();
+    $products = Product::where('user_id', $userId)->WhereNull('deleted')->get();
     $products->each(function ($product) {
     $product->image_path = asset('storage/' . $product->image);
 });
@@ -71,9 +72,25 @@ class productController extends Controller
     }
 
 
-    public function deleteProduct($id){ //seller
+    public function deleteProduct($id){ //seller,admin
+        $Product = Product::find($id);
+        $user = user::find(Auth::id());
+        if($user->role != 'admin') $Product->deleted='user';
+        else $Product->deleted='admin';
+        $Product->save();
+        return $Product;
+    }
+
+    public function terminateProduct($id){ //admin
         $Product = Product::find($id);
         $Product->delete();
+        return $Product;
+    }
+
+    public function restoreProduct($id){ //admin
+        $Product = Product::find($id);
+        $Product->deleted=null;
+        $Product->save();
         return $Product;
     }
 

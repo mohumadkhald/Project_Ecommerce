@@ -22,10 +22,14 @@ class ratingController extends Controller
        $PurchasedProduct->rating = $request->rating;
        $PurchasedProduct->save();
        $product = Product::find($PurchasedProduct->references);
+       if($PurchasedProduct->references === null) return 'product not available';
     //    $ratings = PurchasedProduct::
         $results = PurchasedProduct::where('references', $PurchasedProduct->references)->get();
         $averageRating = $results->avg('rating');
         $product->rating = $averageRating;
+        // dd($product->rating);
+        $product->save();
+        // return;
         $product->image_path = asset('storage/' . $product->image);
         return new productResource($product);
     }
