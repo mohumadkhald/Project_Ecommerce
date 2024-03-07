@@ -37,7 +37,7 @@ export class LoginComponent {
     }
 
     const formData = { ...myForm.value, device_name: this.device_name };
-
+console.log(formData);
     this.authService.login(formData.email, formData.password, formData.device_name)
       .subscribe(
         response => {

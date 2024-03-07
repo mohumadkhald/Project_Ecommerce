@@ -1,45 +1,54 @@
-<!-- signup.component.html -->
+<div style=" height :50px"></div>
+<div class=" p-4 shadow-2 border-round w-full lg:w-4 mx-auto  " id="box">
+  <div class="text-center ">
+    <img src="../../../favicon.ico" alt="Image" height="50" class="p-3">
+    <div class="text-900 text-3xl font-medium p-3 text-white">Welcome</div>
+  </div>
+  <form>
+    <div class="row">
+      <div class="col-6">
+        <label for="email1" class="block text-900 font-medium p-2 text-white">Email</label>
+        <input type="text" id="email1" placeholder="Email" class="w-full p-3 form control border-round">
 
-<div class="signup-container">
-  <h2>Sign Up</h2>
+        <label for="" class="block text-900 font-medium p-2 text-white">User Name</label>
+        <input type="text" id="" placeholder="User Name" class="w-full p-3 form control border-round">
 
-  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="firstName">First Name:</label>
-      <input type="text" id="firstName" name="firstName" class="form-control" formControlName="firstName">
-    </div>
+        <label for="" class="block text-900 font-medium p-2 text-white">User Name</label>
+        <input type="text" id="" placeholder="User Name" class="w-full p-3 form control border-round">
 
-    <div class="form-group">
-      <label for="lastName">Last Name:</label>
-      <input type="text" id="lastName" name="lastName" class="form-control" formControlName="lastName">
-    </div>
 
-    <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" class="form-control" formControlName="username">
-    </div>
 
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" class="form-control" formControlName="email">
-      <div *ngIf="signupForm.controls['email'].hasError('email')">
-        Invalid email format
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" class="form-control" formControlName="password">
-    </div>
 
-    <div class="form-group">
-      <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" formControlName="confirmPassword">
-      <div *ngIf="signupForm.controls['confirmPassword'].hasError('passwordMismatch')">
-        Passwords do not match
+      <div class="col-6">
+
+        <label for="" class="block text-900 font-medium p-2 text-white">Password</label>
+        <input type="password" id="" name="password" placeholder="Password" class=" w-full p-3  ">
+
+        <label for="" class="block text-900 font-medium p-2 text-white">Confirm Password</label>
+        <input type="password" id="" name="password" placeholder="Password" class="w-full p-3  ">
+
+        <label for="gender" class="block text-900 font-medium p-2 text-white">Gender</label>
+<select class="form-select w-full p-3 bg-transparent " style="color: white;" id="gender" name="gender">
+  <option class="text-white"  value="" disabled selected>Select Gender</option>
+
+  <option value="male">Male</option>
+  <option value="female">Female</option>
+</select>
       </div>
-    </div>
 
-    <button type="submit" class="btn btn-dark">Sign Up</button>
+      <label for="text" class="block text-900 font-medium p-2 text-white">Adress</label>
+      <input type="text" id="password" name="password" placeholder="Adress" class="w-full p-3 mb-4 ">
+
+
+
+
+
+
+      <button label="Sign In" type="submit" class="w-full  mb-5 border-round border p-3 "><i
+          class="fa fa-user me-3"></i>Register</button>
+    </div>
   </form>
+
 </div>
