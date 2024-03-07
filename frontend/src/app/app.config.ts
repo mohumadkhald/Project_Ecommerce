@@ -6,9 +6,10 @@ import {
 } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { MyInterceptor } from './myinterceptor.interceptor';
 
 export const appConfig: ApplicationConfig = {
   
@@ -16,6 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
     provideHttpClient(withFetch()),
     DatePipe,
-    provideAnimations()
-],
+    provideAnimations(),
+    MyInterceptor, // Provide the interceptor directly
+  ],
 };
