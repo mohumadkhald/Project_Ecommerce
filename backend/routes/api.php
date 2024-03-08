@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\erequestController;
 use App\Http\Controllers\Api\cartController;
 use App\Http\Controllers\Api\purchaseController;
 use App\Http\Controllers\Api\ratingController;
+use App\Http\Controllers\Api\userController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +57,9 @@ Route::get('', [productController::class, 'getProducts']);
 Route::get('my', [productController::class, 'getMyProducts']);
 Route::post('', [productController::class, 'addProduct']);
 Route::put('/{id}', [productController::class, 'updateProduct']);
-Route::delete('/{id}', [productController::class, 'deleteProduct']);
+Route::put('/{id}/delete', [productController::class, 'deleteProduct']);
+Route::put('/{id}/restore', [productController::class, 'restoreProduct']);
+Route::delete('/{id}', [productController::class, 'terminateProduct']);
 Route::get('{id}', [productController::class, 'getProduct']);
 });
 
@@ -137,3 +140,11 @@ Route::prefix('rate')->middleware('auth:sanctum')->group(function () {
 });
 
 
+Route::middleware('guest')->group(function () {
+    Route::post('user', [UserController::class, 'register'])->name('register');
+    // Other guest-only routes can be defined within this middleware group
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('user/edit', [UserController::class, 'edit'])->name('edit');
+});
