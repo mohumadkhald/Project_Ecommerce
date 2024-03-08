@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class userController extends Controller
 {
@@ -39,6 +40,24 @@ class userController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return 'user has been created';     
+        return response()->json(['message' => 'User has been created', 'user' => $user]);
+    }
+
+    public function edit (Request $request)
+    {
+        $user = User::find(Auth::id());
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'confirmed'],
+            'phone_number' => ['required','regex:/^01\d{9}$/'],
+            'address' => ['required','string', 'max:255'],
+        ]);
+            $user->name = $request->name;
+            $user->phone_number = $request->phone_number;
+            $user->address = $request->address;
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            return response()->json(['message' => 'User has been updated', 'user' => $user]);
     }
 }

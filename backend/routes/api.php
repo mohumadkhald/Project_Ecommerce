@@ -141,6 +141,10 @@ Route::prefix('rate')->middleware('auth:sanctum')->group(function () {
 
 
 Route::middleware('guest')->group(function () {
-    Route::post('/register', [UserController::class, 'register'])->name('register');
+    Route::post('user', [UserController::class, 'register'])->name('register');
     // Other guest-only routes can be defined within this middleware group
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('user/edit', [UserController::class, 'edit'])->name('edit');
 });
