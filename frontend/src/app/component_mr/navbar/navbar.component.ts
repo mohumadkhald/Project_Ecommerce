@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { NgIf } from '@angular/common';
@@ -11,7 +11,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   userData: any;
   ngOnInit() {
     this.getUserData();
@@ -35,8 +35,6 @@ export class NavbarComponent {
 
     );
   }
-
-
 
   constructor(public authService: AuthService, private router: Router,private http: HttpClient) { }
   logout() {

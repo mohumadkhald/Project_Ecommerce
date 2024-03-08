@@ -6,7 +6,7 @@
                     <div class="card-body p-4">
 
                         <div class="row">
-                            <ng-container *ngIf="getCountOfItems()=== 0; else content">
+                            <ng-container *ngIf="getCountOfItems()!== 0; else content">
                                 <div class="col-lg-7">
                                     <h5 class="mb-3">
                                         <a routerLink="../" class=""><i class="fas fa-long-arrow-alt-left me-2"></i>
@@ -14,8 +14,6 @@
                                         </a>
                                     </h5>
                                     <hr>
-
-
 
                                     <div class="d-flex justify-content-between p-2 align-items-center mb-3">
                                       <div class="class=" col-5 btn btn-danger>
