@@ -12,8 +12,8 @@ class AddRateToProducts extends Migration
             $table->integer('rating')->nullable()->default(0)->unsigned()->after('hidden');
         });
     }
-
-    public function down()
+    
+    public function down()  
     {
         Schema::table('products', function (Blueprint $table) {
             $table->dropColumn('rating');
