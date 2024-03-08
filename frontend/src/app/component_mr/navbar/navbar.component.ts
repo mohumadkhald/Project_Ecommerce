@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, NgIf],
+  imports: [RouterLink, NgIf,RouterLinkActive],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -17,6 +17,6 @@ export class NavbarComponent {
     this.router.navigate(['/user/login']); // Assuming you have a login route
   }
   auth() {
-    return this.authService.isAuthenticated(); 
+    return this.authService.isAuthenticated();
   }
 }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { ProductsComponent } from '../products/products.component';
 import { CatShowComponent } from '../cat-show/cat-show.component';
+import { ProductsComponent } from '../products-show/products.component';
 
 @Component({
   selector: 'app-main-page',
