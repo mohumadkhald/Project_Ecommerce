@@ -16,7 +16,7 @@ import { CatShowComponent } from '../cat-show/cat-show.component';
     styleUrl: './products.component.css',
     imports: [NgClass, NgStyle, NgFor, NgIf, CardComponent, CommonModule, CardComponent,CatShowComponent]
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent   {
 
   categories: any[] = [];
 
@@ -30,39 +30,39 @@ export class ProductsComponent implements OnInit {
   title = 'Products';
   products !: Product[];
 
-  constructor(private ProductsService : ProductsService,private categoryService: CategoryService){}
+  // constructor(private categoryService: CategoryService){}
 
-  ngOnInit(){
-    this.fetchCategories();
+  // ngOnInit(){
 
+  //   this.fetchCategories();
 
-    this.ProductsService.getProductsList().subscribe((res: any) => {
-      // Assuming the response structure is { products: [], total: number, skip: number, limit: number }
-      console.log(res.data);
-      if (res && res.data && res.data.length > 0) {
-        this.products = res.data;
-        console.log(this.products);
-      } else {
-        console.error('No products found in the response.');
-      }
-    })
+    // this.ProductsService.getProductsList().subscribe((res: any) => {
+    //   // Assuming the response structure is { products: [], total: number, skip: number, limit: number }
+    //   console.log(res.data);
+    //   if (res && res.data && res.data.length > 0) {
+    //     this.products = res.data;
+    //     console.log(this.products);
+    //   } else {
+    //     console.error('No products found in the response.');
+    //   }
+    // })
   }
-  trackById(index: number, item: any): number {
-    return item.id;
-  }
-  receiveFromChild(id : string){
-    console.log("RECEIVED FROM CHILD, ID" , id)
+  // trackById(index: number, item: any): number {
+  //   return item.id;
+  // }
+  // receiveFromChild(id : string){
+  //   console.log("RECEIVED FROM CHILD, ID" , id)
     // this.games = this.games.filter(game => game.id !== id)
-  }
-  fetchCategories(): void {
-    this.categoryService.getCategories().subscribe(
-      data => {
-        this.categories = data.data;
-      },
-      error => {
-        console.error('Error fetching categories:', error);
-      }
-    );
-  }
 
- }
+    // fetchCategories(): void {
+    //   this.categoryService.getCategories().subscribe(
+    //     data => {
+    //       this.categories = data.data;
+    //     },
+    //     error => {
+    //       console.error('Error fetching categories:', error);
+    //     }
+    //   );
+    // }
+
+//  }
