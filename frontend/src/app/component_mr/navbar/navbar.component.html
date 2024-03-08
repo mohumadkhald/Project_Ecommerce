@@ -21,9 +21,9 @@
                 style="text-shadow: 2px 2px 10px  #ae00ff; color: rgb(183, 220, 18);"></i>
             </span>
           </div>
-<!-- *ngIf="auth(); else login "-->
+
         </form>
-        <div class="dropdown offset-3" >
+        <div class="dropdown offset-3" *ngIf="auth(); else login ">
           <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false">
             <img src="../../../assets/Mohamed-img.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -46,7 +46,7 @@
               <a class="nav-link text-white mx-2" routerLink="/user/signup" routerLinkActive="active_link">signup</a>
             </li>
             <li style="width: 90px;" class="nav-item   mx-2">
-              <a class="nav-link text-white mx-2" routerLink="/user/login" routerLinkActive="active_link">Login</a>
+              <a class="nav-link text-white mx-2" routerLink="/user/login"  routerLinkActive="active_link">Login</a>
             </li>
           </ul>
         </ng-template>
