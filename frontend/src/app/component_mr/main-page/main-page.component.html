@@ -5,8 +5,8 @@
   <div class="col-3 d-none d-lg-block " style="min-height:100vh ;">
     <app-sidebar></app-sidebar>
   </div>
-  <div class="  col-9 row" style="min-height:100vh ;">
-      <div class="col-3" *ngFor="let product of products; trackBy: trackById; let i = index">
+  <div class="  col-lg-9 row" style="min-height:100vh ;">
+      <div class="col-lg-3 col-md-4 col-sm-12" *ngFor="let product of products; trackBy: trackById; let i = index">
         <app-card [productItem]="product"></app-card>
       </div>
   </div>
