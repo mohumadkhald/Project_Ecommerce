@@ -54,8 +54,7 @@ console.log(formData);
           this.router.navigate(['user/profile'], { queryParams: { headers: response } });
         },
         error => {
-          console.error('Login failed:', error);
-          this.errors = ['Login failed'];
+          this.errors = ['invalid cardenalitas'];
         }
       );
   }
