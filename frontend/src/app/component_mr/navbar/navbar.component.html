@@ -8,25 +8,20 @@
       <div class="collapse navbar-collapse" id="mainmenu">
         <ul class="navbar-nav ">
 
-          <li style="width: 90px;" class="nav-item  "><a routerLink="products" [routerLinkActiveOptions]="{exact:true}"  routerLinkActive="active_link" class="nav-link text-white">Products</a></li>
-          <li style="width: 90px;" class="nav-item  "><a routerLink="products/cart" routerLinkActive="active_link" class="nav-link text-white text-center">Shop</a></li>
-          <li style="width: 90px;" class="nav-item  "><a routerLink="about-us" routerLinkActive="active_link" class="nav-link text-white">About Us</a></li>
+          <li style="width: 90px;" class="nav-item  "><a routerLink="products" [routerLinkActiveOptions]="{exact:true}"
+              routerLinkActive="active_link" class="nav-link text-white">Products</a></li>
+          <li style="width: 90px;" class="nav-item  "><a routerLink="products/cart" routerLinkActive="active_link"
+              class="nav-link text-white text-center">Shop</a></li>
+          <li style="width: 90px;" class="nav-item  "><a routerLink="about-us" routerLinkActive="active_link"
+              class="nav-link text-white">About Us</a></li>
         </ul>
-        <!-- <form class="d-flex  mx-auto">
-          <div class="input-group border-0  ">
-            <input type="search" class="form-control bg-transparent text-white border-1 rounded-5" placeholder="Search"
-              aria-label="Search" aria-describedby="search-addon" />
-            <span class="input-group-text border-0 bg-transparent" id="search-addon">
-              <i class="fas fa-search text-white"
-                style="text-shadow: 2px 2px 10px  #ae00ff; color: rgb(183, 220, 18);"></i>
-            </span>
-          </div>
-        </form> -->
         <div class="dropdown offset-lg-8 offset-sm-1 " *ngIf="auth(); else login">
           <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false">
             <img src="../../../assets/Mohamed-img.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
-          <span class="ms-2">{{ userData.name }}</span>
+            <!-- <ng-container *ngIf="userData"> -->
+              <span class="ms-2">{{ userData.name }}</span>
+            <!-- </ng-container> -->
           </a>
           <ul class="dropdown-menu text-small bg-black">
             <!-- <li><a class="dropdown-item bg-black" routerLink="#">New project...</a></li> -->
@@ -45,7 +40,7 @@
               <a class="nav-link text-white mx-2" routerLink="/user/signup" routerLinkActive="active_link">signup</a>
             </li>
             <li style="width: 90px;" class="nav-item  offset-8 mx-2">
-              <a class="nav-link text-white mx-2" routerLink="/user/login"  routerLinkActive="active_link">Login</a>
+              <a class="nav-link text-white mx-2" routerLink="/user/login" routerLinkActive="active_link">Login</a>
             </li>
           </ul>
         </ng-template>

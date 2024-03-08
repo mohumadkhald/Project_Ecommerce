@@ -5,24 +5,9 @@
   <div class="col-3 d-none d-lg-block " style="min-height:100vh ;">
     <app-sidebar></app-sidebar>
   </div>
-
-<div class="  col-9 row" style="min-height:100vh ;">
-
-    <!-- // add for loop for product ] -->
-<div class="col-3">
-<app-card></app-card>
-
-</div>
-<div class="col-3">
-  <app-card></app-card>
-
-  </div><div class="col-3">
-    <app-card></app-card>
-
-    </div><div class="col-3">
-      <app-card></app-card>
-
+  <div class="  col-9 row" style="min-height:100vh ;">
+      <div class="col-3" *ngFor="let product of products; trackBy: trackById; let i = index">
+        <app-card [productItem]="product"></app-card>
       </div>
-
-</div>
+  </div>
 </div>
