@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProductsComponent } from '../products-show/products.component';
+import { ProductsComponent } from '../products-page/products.component';
 
 @Component({
   selector: 'app-cat-show',

@@ -2,20 +2,20 @@
   <div class="container py-4 h-100">
     <div class="row h-100">
       <!-- Left Column for Profile -->
-      <div class="col-lg-4 bg-black border-white border-1 border-round">
+      <div class="col-lg-4 bg-black border-white border-1 border-round ml-4">
         <div class="card border-0">
           <div class="rounded-top text-white d-flex flex-row" style="background-color: #000000; height:200px; ">
             <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
               <img src="../../../assets/Mohamed-img.jpg"
                 alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                 style="width: 150px; z-index: 1">
-              <button type="button" class="btn  text-white" data-mdb-ripple-color="white"
+              <button type="button" class="btn border-white border-1 border-round text-white" data-mdb-ripple-color="white"
                 style="z-index: 1;">
                 Edit profile
               </button>
             </div>
             <div class="ms-3" style="margin-top: 130px;">
-              <h5>{{ userData.name }} user name</h5>
+              <h5>{{ userData.name }} </h5>
               <p>New York</p>
             </div>
           </div>
@@ -49,36 +49,67 @@
         </div>
       </div>
       <!-- Right Column for Recent Products -->
-      <div class="offset-1 col-lg-7">
-        <div class="card">
-          <div class="card-body p-4 text-black">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-              <p class="lead fw-normal mb-0">Recent Products</p>
-             <a router-link="/user/profile" class="cursor-pointer">Show all</a>
-            </div>
-            <div class="row g-2">
-              <div class="col mb-2">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
-                  alt="image 1" class="w-100 rounded-3">
-              </div>
-              <div class="col mb-2">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
-                  alt="image 1" class="w-100 rounded-3">
-              </div>
-            </div>
-            <div class="row g-2">
-              <div class="col">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
-                  alt="image 1" class="w-100 rounded-3">
-              </div>
-              <div class="col">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
-                  alt="image 1" class="w-100 rounded-3">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+
+
+
+
+<div class="col-7 border-1 border-white ms-5">
+  <div style=" height :50px"></div>
+  <div class=" p-4 shadow-2 border-round w-full  mx-auto  " id="box">
+    <div class="text-center ">
+      <div class="text-900 text-3xl font-medium p-3 text-white"> your information !</div>
     </div>
+    <form>
+      <div class="row">
+        <div class="col-6">
+          <label for="email1" class="block text-900 font-medium p-2 text-white">Email</label>
+          <input type="text" id="email1" placeholder="Email" class="w-full p-3 form control border-round">
+
+          <label for="" class="block text-900 font-medium p-2 text-white">User Name</label>
+          <input type="text" id="" placeholder="{{ userData.name }}" class="w-full p-3 form control border-round">
+
+          <label for="" class="block text-900 font-medium p-2 text-white">User Name</label>
+          <input type="text" id="" placeholder="User Name" class="w-full p-3 form control border-round">
+
+
+
+        </div>
+
+
+        <div class="col-6">
+
+          <label for="" class="block text-900 font-medium p-2 text-white">Password</label>
+          <input type="password" id="" name="password" placeholder="Password" class=" w-full p-3 border-round ">
+
+          <label for="" class="block text-900 font-medium p-2 text-white">Confirm Password</label>
+          <input type="password" id="" name="password" placeholder="Password" class="w-full p-3 border-round ">
+
+          <label for="gender" class="block text-900 font-medium p-2 text-white">Gender</label>
+          <select class="form-select w-full p-3 bg-transparent " style="color: white;" id="gender" name="gender">
+            <option class="text-white" value="" disabled selected>Select Gender</option>
+
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+
+  <div class="row">
+
+        <label for="text" class="block text-900 font-medium p-2 text-white">Adress</label>
+        <input type="text" id="password" name="password" placeholder="Adress" class="w-full py-3 mb-4 ms-3 border-round">
+
+        <button label="Sign In" type="submit" class="w-full  mb-3 border-round border py-3 ms-3"><i
+            class="fa fa-user me-3"></i>Register</button>
+
   </div>
-</section>
+
+      </div>
+    </form>
+
+  </div>
+
+</div>
+
+
+</div></div></section>

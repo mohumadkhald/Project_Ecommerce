@@ -7,7 +7,7 @@
 <ul *ngFor="let category of categories" class="list-group border-1  " style="border: 1px solid #ae00ff ;">
 <!-- add for loop here with category and delete another li ] -->
           <li class="list-group-item text-white bg-black text-center img-thumbnail border-1 mirror-effect "
-          style="border: 1px solid #ae00ff ;"><a class="nav-link text-bo" href="#">{{ category.name }}</a></li>
+          style="border: 1px solid #ae00ff ;"><a class="nav-link text-bo" routerLink="products">{{ category.name }}</a></li>
           </ul>
       </div>
 

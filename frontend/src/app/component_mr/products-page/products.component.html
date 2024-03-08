@@ -1,19 +1,32 @@
+
+
+
 <div style=" height :50px"></div>
 
 <h1 class="text-center ">Products App</h1>
+
+
+<div *ngFor="let category of categories" class="list-group border-1  " style="border: 1px solid #ae00ff ;">
+<app-cat-show></app-cat-show>
 <div class="">
     <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4  row-cols-xxl-4">
         <ng-container *ngFor="let product of products; trackBy: trackById; let i = index">
-            <ng-container *ngIf="product.id !== 29">
                 <div>
-                    <div class="product-card">
-                        <app-product-card [productItem]="product"></app-product-card>
-                    </div>
+                        <app-card ></app-card>
                 </div>
-            </ng-container>
         </ng-container>
     </div>
 </div>
+
+</div>
+
+
+
+
+
+
+
+
 
 
 
