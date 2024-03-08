@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\erequestController;
 use App\Http\Controllers\Api\cartController;
 use App\Http\Controllers\Api\purchaseController;
 use App\Http\Controllers\Api\ratingController;
+use App\Http\Controllers\Api\userController;
 
 /*
 |--------------------------------------------------------------------------
@@ -139,3 +140,7 @@ Route::prefix('rate')->middleware('auth:sanctum')->group(function () {
 });
 
 
+Route::middleware('guest')->group(function () {
+    Route::post('/register', [UserController::class, 'register'])->name('register');
+    // Other guest-only routes can be defined within this middleware group
+});

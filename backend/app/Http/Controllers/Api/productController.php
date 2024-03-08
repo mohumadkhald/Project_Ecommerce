@@ -43,6 +43,7 @@ class productController extends Controller
         $product->image = $imagePath;
         $product->title = $request->title;
         $product->price = $request->price;
+        $product->category_id = $request->category_id;  
         if($request->quantity) $product->quantity = $request->quantity;
         $product->user_id = $request->user()->id;
         $product->save();
