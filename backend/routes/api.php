@@ -45,7 +45,9 @@ Route::post('/sanctum/token', function (Request $request) {
         ]);
     }
 
-    return $user->createToken($request->device_name)->plainTextToken;
+    $token = $user->createToken($request->device_name)->plainTextToken;
+    return response()->json($token);
+
 });
 
 
@@ -120,7 +122,7 @@ Route::prefix('brands')->middleware('auth:sanctum')->group(function () {
     Route::delete('delete_brand/{id}', [BrandsController::class, 'delete_brand']);
 });
 // category crud
-Route::prefix('categories')->middleware('auth:sanctum')->group(function () {
+Route::prefix('categories')->group(function () {
     Route::get('/index', [CategoryController::class, 'index']);
     Route::get('/show/{id}', [CategoryController::class, 'show']);
     Route::post('/store', [CategoryController::class, 'store']);
