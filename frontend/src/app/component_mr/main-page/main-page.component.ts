@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
@@ -22,8 +23,11 @@ export class MainPageComponent implements OnInit {
   title = 'Products';
   products !: Product[];
 
-  constructor(private ProductsService: ProductsService) { }
+  constructor(private ProductsService: ProductsService, private authService: AuthService) { }
 
+  auth() {
+    return this.authService.isAuthenticated();
+  }
   ngOnInit() {
     this.ProductsService.getProductsList().subscribe((res: any) => {
       console.log(res.data);
@@ -43,5 +47,6 @@ export class MainPageComponent implements OnInit {
     console.log("RECEIVED FROM CHILD, ID", id)
     // this.games = this.games.filter(game => game.id !== id)
   }
+
 
 }

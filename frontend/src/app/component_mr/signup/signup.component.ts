@@ -1,54 +1,55 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, NgModule } from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { HttpHeaders } from '@angular/common/http';
+import { Router, RouterLink } from '@angular/router';
+import { RegisterService } from '../../register.service';
+import { CheckboxModule } from 'primeng/checkbox';
+
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, CheckboxModule, FormsModule, RouterLink],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
 export class SignupComponent {
-  signupForm: FormGroup;
+  device_name: string = "Unknown";
+  errors: any = [];
 
-  constructor(private fb: FormBuilder) {
-    this.signupForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', Validators.required],
-    }, {
-      validator: this.passwordConfirmationValidator('password', 'confirmPassword')
-    });
-  }
-  passwordConfirmationValidator(controlName: string, matchingControlName: string) {
-    return (formGroup: FormGroup) => {
-      const control = formGroup.controls[controlName];
-      const matchingControl = formGroup.controls[matchingControlName];
+  constructor(private signupService: RegisterService, private router: Router) { }
 
-      if (matchingControl.errors && !matchingControl.errors['passwordMismatch']) {
-        return;
-      }
+  onSubmit(myForm: NgForm) {
+    const userAgent = navigator.userAgent;
 
-      if (control.value !== matchingControl.value) {
-        matchingControl.setErrors({ passwordMismatch: true });
-      } else {
-        matchingControl.setErrors(null);
-      }
-    };
-  }
-
-  onSubmit() {
-    // Handle form submission here
-    if (this.signupForm.valid) {
-      console.log('Form submitted:', this.signupForm.value);
-    } else {
-      console.log('Form is invalid. Please correct the errors.');
+    if (/android/i.test(userAgent)) {
+      this.device_name = "Android Device";
+    } else if (/iPad|iPhone|iPod/.test(userAgent)) {
+      this.device_name = "iOS Device";
+    } else if (/Macintosh/.test(userAgent)) {
+      this.device_name = "Mac";
+    } else if (/Windows/.test(userAgent)) {
+      this.device_name = "Windows PC";
+    } else if (/Linux/.test(userAgent)) {
+      this.device_name = "Linux PC";
     }
+
+    const formData = { ...myForm.value, device_name: this.device_name };
+    console.log(formData);
+    
+    this.signupService.signup(formData.email, formData.name, formData.phone, formData.device_name, formData.gender, formData.addrees, formData.password,formData.password_confirmation)
+      .subscribe(
+        response => {
+          console.log('Signup successful:', response);
+          // Handle successful signup, e.g., navigate to a success page
+        },
+        error => {
+          console.error('Signup failed:', error);
+          this.errors = ['Signup failed'];
+        }
+      );
   }
 }
 
