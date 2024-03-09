@@ -40,8 +40,11 @@ export class NavbarComponent implements OnInit {
 
   constructor(public authService: AuthService, private router: Router,private http: HttpClient) { }
   logout() {
+
+    localStorage.removeItem('token');
     this.authService.logout();
     this.router.navigate(['/user/login']); // Assuming you have a login route
+
   }
   auth() {
     return this.authService.isAuthenticated();

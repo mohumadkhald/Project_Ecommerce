@@ -29,4 +29,5 @@ export class ProductsService {
   getLatest(): Observable<any> {
     return this.http.get(`${this.apiUrl}/products`, { headers: this.getHeaders() });
   }
+  
 }
