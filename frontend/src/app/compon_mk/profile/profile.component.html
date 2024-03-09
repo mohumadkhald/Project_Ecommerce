@@ -63,13 +63,13 @@
             <div class="row">
               <div class="col-6">
                 <label for="email1" class="block text-900 font-medium p-2 text-white">Email</label>
-                <input type="text" id="email1" placeholder="Email" class="w-full p-3 form control border-round">
+                <input type="text" id="email1" placeholder="{{userData.email}}" class="w-full p-3 form control border-round">
 
                 <label for="" class="block text-900 font-medium p-2 text-white">User Name</label>
                 <input type="text" id="" placeholder="{{ userData.name }}" class="w-full p-3 form control border-round">
 
-                <label for="" class="block text-900 font-medium p-2 text-white">User Name</label>
-                <input type="text" id="" placeholder="User Name" class="w-full p-3 form control border-round">
+                <label for="" class="block text-900 font-medium p-2 text-white">phone number</label>
+                <input type="number" id="" placeholder="{{userData.phone_number }}" class="w-full p-3 form control border-round">
 
 
 
@@ -78,29 +78,29 @@
 
               <div class="col-6">
 
-                <label for="" class="block text-900 font-medium p-2 text-white">Password</label>
-                <input type="password" id="" name="password" placeholder="Password" class=" w-full p-3 border-round ">
+                <label for="" class="block text-900 font-medium p-2 text-white">old password</label>
+                <input type="password" id="" name="password" placeholder="{{userData.Password}}" class=" w-full p-3 border-round ">
 
-                <label for="" class="block text-900 font-medium p-2 text-white">Confirm Password</label>
+                <label for="" class="block text-900 font-medium p-2 text-white">new Password</label>
                 <input type="password" id="" name="password" placeholder="Password" class="w-full p-3 border-round ">
 
-                <label for="gender" class="block text-900 font-medium p-2 text-white">Gender</label>
+                <label for="gender" class="block text-900 font-medium p-2 text-white">Status</label>
                 <select class="form-select w-full p-3 bg-transparent " style="color: white;" id="gender" name="gender">
-                  <option class="text-white" value="" disabled selected>Select Gender</option>
+                  <option class="text-white" value="" disabled selected>{{userData.role}}</option>
 
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
+                  <option value="male">seller</option>
+                  <option value="female">buyer</option>
                 </select>
               </div>
 
               <div class="row">
 
-                <label for="text" class="block text-900 font-medium p-2 text-white">Adress</label>
-                <input type="text" id="password" name="password" placeholder="Adress"
+                <label for="text" class="block text-900 font-medium p-2 text-white">Address</label>
+                <input type="text" id="password" name="password" placeholder="{{userData.address}}"
                   class="w-full py-3 mb-4 ms-3 border-round">
 
                 <button label="Sign In" type="submit" class="w-full  mb-3 border-round border py-3 ms-3"><i
-                    class="fa fa-user me-3"></i>Register</button>
+                    class="fa fa-user me-3"></i>Update</button>
 
               </div>
 
