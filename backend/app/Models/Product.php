@@ -25,6 +25,11 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Categories::class);
+    }
+
     // Define a relationship with the ExchangeRequest model
     // public function exchangeRequests()
     // {

@@ -14,7 +14,7 @@ class AddColumnsToPurchasedProductsTable extends Migration
         });
     }
 
-    public function down()
+    public function down()                  
     {
         Schema::table('purchased_products', function (Blueprint $table) {
             $table->dropForeign(['references']);

@@ -1,0 +1,57 @@
+<div class="w-100 py-3">
+  <div class="navbar navbar-expand-lg bg-transparent navbar-dark text-white   w-100 z-2 m-0 px-0  ">
+    <div class="container">
+
+      <a routerLink="/" class="navbar-brand">PRINDER</a>
+      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#mainmenu">
+        <span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="mainmenu">
+        <ul class="navbar-nav ">
+
+          <li style="width: 90px;" class="nav-item  "><a routerLink="products" [routerLinkActiveOptions]="{exact:true}"  routerLinkActive="active_link" class="nav-link text-white">Products</a></li>
+          <li style="width: 90px;" class="nav-item  "><a routerLink="products/cart" routerLinkActive="active_link" class="nav-link text-white text-center">Shop</a></li>
+          <li style="width: 90px;" class="nav-item  "><a routerLink="about-us" routerLinkActive="active_link" class="nav-link text-white">About Us</a></li>
+        </ul>
+        <!-- <form class="d-flex  mx-auto">
+          <div class="input-group border-0  ">
+            <input type="search" class="form-control bg-transparent text-white border-1 rounded-5" placeholder="Search"
+              aria-label="Search" aria-describedby="search-addon" />
+            <span class="input-group-text border-0 bg-transparent" id="search-addon">
+              <i class="fas fa-search text-white"
+                style="text-shadow: 2px 2px 10px  #ae00ff; color: rgb(183, 220, 18);"></i>
+            </span>
+          </div>
+        </form> -->
+        <div class="dropdown offset-lg-8 offset-sm-1 " *ngIf="auth(); else login">
+          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <img src="../../../assets/Mohamed-img.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
+          <span class="ms-2">{{ userData.name }}</span>
+          </a>
+          <ul class="dropdown-menu text-small bg-black">
+            <!-- <li><a class="dropdown-item bg-black" routerLink="#">New project...</a></li> -->
+            <!-- <li><a class="dropdown-item bg-black" routerLink="/user/setting" routerLinkActive="active_link">Settings</a></li> -->
+            <li><a class="dropdown-item bg-black" routerLink="/user/profile">Profile</a></li>
+            <li>
+              <hr class="dropdown-divider bg-white">
+            </li>
+            <li><a class="dropdown-item bg-black" routerLink="/user/login" (click)="logout()">Logout</a></li>
+          </ul>
+        </div>
+
+        <ng-template #login>
+          <ul class="navbar-nav">
+            <li style="width: 90px;" class="nav-item   mx-2">
+              <a class="nav-link text-white mx-2" routerLink="/user/signup" routerLinkActive="active_link">signup</a>
+            </li>
+            <li style="width: 90px;" class="nav-item   mx-2">
+              <a class="nav-link text-white mx-2" routerLink="/user/login"  routerLinkActive="active_link">Login</a>
+            </li>
+          </ul>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+
+</div>
