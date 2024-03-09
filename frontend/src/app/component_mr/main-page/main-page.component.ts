@@ -8,12 +8,13 @@ import { CardComponent } from '../card/card.component';
 import { Product } from '../../interface/product';
 import { ProductsService } from '../../services/products.service';
 import { NgFor } from '@angular/common';
+import { AddProductPageComponent } from '../add-product-page/add-product-page.component';
 
 
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, SidebarComponent, ProductsComponent, CatShowComponent, CardComponent, NgFor],
+  imports: [HeaderComponent, SidebarComponent, SidebarComponent, ProductsComponent, CatShowComponent, CardComponent, NgFor,AddProductPageComponent],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
 })
