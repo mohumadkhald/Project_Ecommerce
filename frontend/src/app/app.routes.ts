@@ -24,7 +24,7 @@ export const routes: Routes = [
     { path: 'contact', component: ContactComponent, title: "Contact"},
     { path: 'about-us', component: AboutUsComponent, title: "About Us"},
     { path: 'notfound', component: NotfoundComponent, title: "Not Found"},
-    { path: 'add-product', component: AddProductPageComponent, title: "add Product", canActivate: [authGuardGuard]},
+    { path: 'add-product', component: AddProductPageComponent, title: "add Product"},
 
     { path: '**', redirectTo: '/notfound' }
 
