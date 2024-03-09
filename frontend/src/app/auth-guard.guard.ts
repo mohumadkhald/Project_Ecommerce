@@ -6,6 +6,6 @@ export const authGuardGuard: CanActivateFn = (route, state) => {
   } else if(localStorage.getItem('')) {
     
   }
-  state.url = '/login';
+  window.location.href = '/user/login';
   return false;
 };
