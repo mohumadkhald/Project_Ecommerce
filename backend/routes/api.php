@@ -52,7 +52,7 @@ Route::post('/sanctum/token', function (Request $request) {
 });
 
 
-Route::prefix('products')->middleware('auth:sanctum')->group(function (){
+Route::prefix('products')->group(function (){
 Route::get('', [productController::class, 'getProducts']);   // get http://127.0.0.1:8000/api/products   (get all products as user)
 Route::get('my', [productController::class, 'getMyProducts']); // get http://127.0.0.1:8000/api/products/my   (get my products as seller)
 Route::post('', [productController::class, 'addProduct']);  // post http://127.0.0.1:8000/api/products   (add new product as seller)
@@ -100,7 +100,8 @@ Route::put('/{id}', [purchaseController::class, 'deliveredPurchase']);  // put h
 //     Route::delete('/{id}', [postController::class, 'deletePost']);
 //     Route::get('{id}', [postController::class, 'getPost']);
 // });
-Route::middleware('auth:sanctum')->get('user', [purchaseController::class, 'getUser']);  // get http://127.0.0.1:8000/api/user   (get my information as the authenticated user)
+Route::middleware('auth:sanctum')->get('user', [purchaseController::class, 'getUser']);
+// get http://127.0.0.1:8000/api/user   (get my information as the authenticated user)
 // Route::prefix('erequests')->middleware('auth:sanctum')->group(function () {
 //     Route::get('/sent', [erequestController::class, 'sentErequest']);
 //     Route::get('/received', [erequestController::class, 'receivedErequest']);
@@ -141,16 +142,13 @@ Route::prefix('rate')->middleware('auth:sanctum')->group(function () {
 });
 
 
-<<<<<<< HEAD
-Route::post('user', [UserController::class, 'register'])->name('register');
-// Other routes that were within the 'guest' middleware group can be defined here
+// Route::post('user', [UserController::class, 'register'])->name('register');
+// // Other routes that were within the 'guest' middleware group can be defined here
 
-=======
 Route::middleware('guest')->group(function () {
     Route::post('user', [UserController::class, 'register'])->name('register');  // post http://127.0.0.1:8000/api/user   (register as a new user)
     // Other guest-only routes can be defined within this middleware group
 });
->>>>>>> zain
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('user/edit', [UserController::class, 'edit'])->name('edit');  // post http://127.0.0.1:8000/api/user/edit   (edit my information as an authenticated user)
