@@ -122,6 +122,10 @@ class CategoryController extends Controller
         return response()->json(['error' => 'Category not found'], 404);
     }
         $products = Product::where('category_id', $id)->get();
+        $products->each(function ($product) {
+            $product->image_path = asset('storage/' . $product->image);
+        });
+
 
         return response()->json(['products' => productResource::collection($products)]);
     }
