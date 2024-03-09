@@ -15,11 +15,11 @@ import { AddProductPageComponent } from './component_mr/add-product-page/add-pro
 export const routes: Routes = [
 
     {path:'',component:MainPageComponent,title: "prinder",},
-    { path:'products', component: ProductsComponent ,title: "shop"  },
+    { path:'products/:cat', component: ProductsComponent ,title: "shop"  },
     {path:'product/details/:id',component:PageDetailsComponent, title: "Product Details"},
     {path:'user/profile',component:ProfileComponent, title: "Profile", canActivate: [authGuardGuard]},
     { path: 'user/login', component: LoginComponent, title: "Login"},
-    { path: 'products/cart',component: CartComponent, title: "Cart"},
+    { path: 'cart',component: CartComponent, title: "Cart"},
     { path: 'user/signup', component: SignupComponent, title: "Sign Up"},
     { path: 'contact', component: ContactComponent, title: "Contact"},
     { path: 'about-us', component: AboutUsComponent, title: "About Us"},

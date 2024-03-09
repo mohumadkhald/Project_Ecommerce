@@ -88,3 +88,7 @@ tr[ng-reflect-router-link] {
 ::-webkit-scrollbar-thumb:hover {
   background:#700c9eb6;
 }
+
+li, a{
+  cursor: pointer;
+}
