@@ -142,9 +142,6 @@ Route::prefix('rate')->middleware('auth:sanctum')->group(function () {
 });
 
 
-// Route::post('user', [UserController::class, 'register'])->name('register');
-// // Other routes that were within the 'guest' middleware group can be defined here
-
 Route::middleware('guest')->group(function () {
     Route::post('user', [UserController::class, 'register'])->name('register');  // post http://127.0.0.1:8000/api/user   (register as a new user)
     // Other guest-only routes can be defined within this middleware group
