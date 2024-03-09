@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Brands;
 use App\Models\Categories;
 use App\Models\Product;
+use App\Models\Purchase;
+use App\Models\PurchasedProduct;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
 
@@ -20,7 +22,27 @@ class AdminController extends Controller
         $usertype = auth()->user()->role;
 
         if ($usertype == 'admin') {
-            return view('admin.home');
+            $total_prodct = Product::all()->count();
+            $total_order = Purchase::all()->count();
+
+            $total_buyers = User::where('role', 'LIKE', 'buyer')->count();
+            $total_sellers = User::where('role', 'seller')->count();
+
+            $order_delivered = Purchase::where('state', 'delivered')->count();
+            $order_not_delivered = Purchase::where('state', 'not delivered')->count();
+
+
+            $purchase_products = PurchasedProduct::all();
+            $total_revenue = 0;
+            $order_price = 0;
+
+            foreach ($purchase_products as $product) {
+                $order_price = Product::find($product->product_id)->price;
+                $total_revenue = $total_revenue + $order_price * $product->quantity;
+
+            }
+
+            return view('admin.home', compact('order_delivered', 'order_not_delivered', 'total_prodct', 'total_order', 'total_buyers', 'total_sellers', 'total_revenue'));
         }
     }
 
@@ -123,6 +145,32 @@ class AdminController extends Controller
         $data->delete();
         return redirect()->back()->with('success', 'User deleted successfully');
 
+    }
+
+    public function order()
+    {
+        $orders = PurchasedProduct::all();
+        return view('admin.order', compact('orders'));
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $search_id = null;
+
+        if ($search) {
+            $search_user = User::where('name', 'LIKE', "%$search%")->first();
+
+            if ($search_user) {
+                $search_id = $search_user->id;
+            }
+        }
+
+        $data = Product::where('title', 'LIKE', "%$search%")
+            ->orWhere('user_id', $search_id)
+            ->get();
+
+        return view('admin.view_product', compact('data'));
     }
 }
 

@@ -9,11 +9,10 @@
             margin:auto;
         }
         .cat_label{
-            font-size:30px;
-            font-weight:bold;
-            padding: 30px;
-            color:white;
-        }
+        text-align: center;
+        font-size:25px;
+        font-weight:bold;
+    }
         .center{
           margin:auto;
           text-align: center;
@@ -68,16 +67,24 @@
     </div>
 @endif
 
-          <h1 class="cat_label">Products</h1>
+          <h1 class="cat_label mb-3" >Products</h1>
+          <div class="cat_label">
+            <form action="{{url('search')}}" method="get">
+                @csrf
+                <input type="text" name="search" placeholder="Search" style="color:black;">
+                <input type="submit" value="search" class="btn btn-outline-primary">
+            </form>
+          </div>
           <hr style="border-color: white;         margin: 5px;">
 
-          <div>
+          <div >
                     <table class="center">
     <tr>
         <th>Product</th>
         <th>Description</th>
         <th>Rate</th>
         <th>Seller</th>
+        <th>Seller-Email</th>
         <th>Image</th>
         <th>Price</th>
         <th>Quantity</th>
@@ -90,8 +97,9 @@
             <td>{{ $product->description }}</td>
             <td>{{ $product->rating }}</td>
             <td>{{ $product->user->name }}</td>
+            <td>{{ $product->user->email }}</td>
             <td>
-                <img src="{{ asset($product->image) }}" alt="{{$product->title}} Image" style="max-width: 100px; max-height: 100px;">
+            <img src="{{ asset('../storage/' . $product->image) }}" alt="{{ $product->title }} Image" style="max-width: 100px; max-height: 100px;">
             </td>
             <td>{{ $product->price }}</td>
             <td>{{ $product->quantity }}</td>

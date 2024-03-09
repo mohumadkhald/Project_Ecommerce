@@ -9,11 +9,10 @@
             margin:auto;
         }
         .cat_label{
-            font-size:30px;
-            font-weight:bold;
-            padding: 30px;
-            color:white;
-        }
+        text-align: center;
+        font-size:25px;
+        font-weight:bold;
+    }
         .center{
           margin:auto;
           text-align: center;
@@ -69,7 +68,7 @@
     </div>
 @endif
 
-                <h1 class="cat_label">Add Category</h1>
+                <h1 class="cat_label">Category</h1>
                 <hr style="border-color: white;         margin: 5px;">
 
                     <form action="{{ url('add_category') }}" method="POST" enctype="multipart/form-data">

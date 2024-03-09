@@ -50,3 +50,7 @@ route::get('/brand_delete/{id}', [AdminController::class, 'brand_delete']);
 
 route::get('/view_users', [AdminController::class, 'view_users']);
 route::get('/user_delete/{id}', [AdminController::class, 'user_delete']);
+
+route::get('/order', [AdminController::class, 'order']);
+
+route::get('/search', [AdminController::class, 'search']);

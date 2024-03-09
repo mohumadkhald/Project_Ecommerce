@@ -9,11 +9,10 @@
             margin:auto;
         }
         .cat_label{
-            font-size:30px;
-            font-weight:bold;
-            padding: 30px;
-            color:white;
-        }
+        text-align: center;
+        font-size:25px;
+        font-weight:bold;
+    }
         .center{
           margin:auto;
           text-align: center;
