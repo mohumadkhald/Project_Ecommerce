@@ -18,7 +18,7 @@ class productResource extends JsonResource
         'id' => $this->id,
         'title' => $this->title,
         'description' => $this->description,
-        'image_path' => $this->image_path,
+        'image' => $this->image,
         'quantity' => $this->when($this->hidden === null, $this->quantity),
         'price' => $this->price,
         'seller' => $this->user->name,

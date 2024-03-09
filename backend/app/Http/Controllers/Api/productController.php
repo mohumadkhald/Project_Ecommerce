@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 use App\Http\Resources\productResource;
 use App\Models\User;
 
+use Exception;
+// use Illuminate\Http\Request;
+use Psy\Readline\Hoa\FileException;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+
 class productController extends Controller
 {
     
@@ -148,9 +154,25 @@ public function addProduct(Request $request)
         ]);
 
         $product = new Product();
-        $imagePath = $request->file('image')->store('images/posts', 'public');
+        // $imagePath = $request->file('image')->store('images/posts', 'public');
         $product->description = $request->description;
-        $product->image = $imagePath;
+        // $product->image = $imagePath;
+        if ($request->hasFile('image')) {
+                $path = 'assets/uploads/products/' . $product->image;
+
+
+            }
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $fileName = time() . '.' . $ext;
+
+            try {
+                $file->move('assets/uploads/products', $fileName);
+            } catch (FileException $e) {
+                return response()->json('An error occurred while processing your request', 500);
+            }
+
+            $product->image = $path . $fileName;
         $product->title = $request->title;
         $product->price = $request->price;
         $product->category_id = $request->category_id;
@@ -159,7 +181,7 @@ public function addProduct(Request $request)
         $product->category_id = $request->category_id;
         $product->save();
 
-        $product->image_path = asset('storage/' . $imagePath);
+        // $product->image_path = asset('storage/' . $imagePath);
 
         return response()->json(['message' => 'Product added successfully', 'product' => $product]);
     } catch (\Exception $e) {
