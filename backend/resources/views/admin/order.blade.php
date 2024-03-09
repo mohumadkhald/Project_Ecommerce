@@ -61,6 +61,7 @@
         <th>Price</th>
         <th>Delivery status</th>
         <th>Image</th>
+        <th>Update Delivery</th>
     </tr>
 
     @foreach($orders as $order)
@@ -77,6 +78,13 @@
             <td>{{ $order->purchase->state }}</td> 
             <td>
                 <img src="{{ asset('storage/' . optional($order->product)->image) }}" alt="Product Image" style="max-width: 100px; max-height: 100px;">
+            </td>
+            <td>
+              @if ($order->purchase->state == 'not delivered')
+              <a href="{{url('delivered', $order->purchase->id)}}" class="btn btn-primary">Delivered</a>
+          @else
+          <p>delivered</p>
+          @endif
             </td>
         </tr>
     @endforeach

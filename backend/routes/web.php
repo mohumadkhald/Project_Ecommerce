@@ -54,3 +54,4 @@ route::get('/user_delete/{id}', [AdminController::class, 'user_delete']);
 route::get('/order', [AdminController::class, 'order']);
 
 route::get('/search', [AdminController::class, 'search']);
+route::get('/delivered/{id}', [AdminController::class, 'delivered']);

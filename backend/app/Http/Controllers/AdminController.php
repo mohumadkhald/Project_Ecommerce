@@ -172,5 +172,13 @@ class AdminController extends Controller
 
         return view('admin.view_product', compact('data'));
     }
+
+    public function delivered($id)
+    {
+        $order = Purchase::find($id);
+        $order->state = "delivered";
+        $order->save();
+        return redirect()->back();
+    }
 }
 

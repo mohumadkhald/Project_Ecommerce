@@ -11,11 +11,11 @@ class Purchase extends Model
     protected $fillable = ['buyer_id', 'state'];
 
     public function purchasedProducts()
-{
-    return $this->hasMany(PurchasedProduct::class, 'purchase_id');
-}
+    {
+        return $this->hasMany(PurchasedProduct::class, 'purchase_id');
+    }
 
-public function user()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
