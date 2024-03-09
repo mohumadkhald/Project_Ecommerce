@@ -10,6 +10,10 @@ use App\Models\Purchase;
 use App\Models\Product;
 use App\Models\User;
 use App\Http\Resources\purchaseResource;
+use App\Http\Resources\cartResource;
+use App\Http\Resources\productResource;
+use Illuminate\Support\Facades\DB;
+
 
 class purchaseController extends Controller
 {
@@ -132,7 +136,7 @@ class purchaseController extends Controller
                 $carted->delete();
             }
 
-            return response()->json(['message' => 'Purchase successful', 'purchasedProducts' => $purchasedProducts]);
+            return response()->json(['message' => 'Purchase successful', 'purchasedProducts' => cartResource::collection($purchasedProducts)]);
         });
     } catch (\Exception $e) {
         return response()->json(['error' => 'Purchase failed'], 500);
@@ -148,9 +152,14 @@ public function getPurchases()
             return response()->json(['error' => 'User not found'], 404);
         }
 
-        $purchases = $user->purchases()->with('purchasedProducts')->get();
+        $purchases = $user->purchases()
+        ->with('purchasedProducts')
+        ->get();
+// dd($purchases);
+        return response()->json([
+            'purchases' => purchaseResource::collection($purchases)
 
-        return response()->json(['purchases' => $purchases]);
+        ]);
     } catch (\Exception $e) {
         return response()->json(['error' => 'Failed to retrieve purchases'], 500);
     }
@@ -165,6 +174,10 @@ public function deliveredPurchase($id)
             return response()->json(['error' => 'User not found'], 404);
         }
 
+        if ($user->role != 'admin') {
+            return response()->json(['error' => 'unauthorized'], 401);
+        }
+
         $purchase = $user->purchases()->with('purchasedProducts')->find($id);
 
         if (!$purchase) {
@@ -174,7 +187,7 @@ public function deliveredPurchase($id)
         $purchase->state = 'delivered';
         $purchase->save();
 
-        return response()->json(['message' => 'Purchase marked as delivered', 'purchase' => $purchase]);
+        return response()->json(['message' => 'Purchase marked as delivered', 'purchase' => new PurchaseResource ($purchase)]);
     } catch (\Exception $e) {
         return response()->json(['error' => 'Failed to update purchase state'], 500);
     }
