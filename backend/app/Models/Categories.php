@@ -12,6 +12,10 @@ class Categories extends Model
         'name',
         'image'
     ];
+    public function items()
+    {
+        return $this->hasMany(Product::class);
+    }
 
     protected $hidden = [
         'created_at',
