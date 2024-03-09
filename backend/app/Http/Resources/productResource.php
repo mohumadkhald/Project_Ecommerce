@@ -22,7 +22,8 @@ class productResource extends JsonResource
         'quantity' => $this->when($this->hidden === null, $this->quantity),
         'price' => $this->price,
         'seller' => $this->user->name,
-        'rating' => $this->rating
+        'rating' => $this->rating,
+        'category' => $this->category->name
         ];
     }
 }

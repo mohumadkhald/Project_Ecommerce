@@ -1,0 +1,9 @@
+.container{
+  max-width: 1320px;
+
+  }
+.active_link{
+    background-color: #700c9eb6;
+border-radius: 10px;
+}
+

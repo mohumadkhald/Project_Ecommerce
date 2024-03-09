@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Psy\Readline\Hoa\FileException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Product;
+use App\Http\Resources\productResource;
 
 class CategoryController extends Controller
 {
@@ -109,5 +111,18 @@ class CategoryController extends Controller
             return response()->json('category Deleted successfully', 200);
         } else
             return response()->json('category not found', 404);
+    }
+
+
+    public function getProducts($id)
+    {
+        $category = Categories::find($id);
+
+    if (!$category) {
+        return response()->json(['error' => 'Category not found'], 404);
+    }
+        $products = Product::where('category_id', $id)->get();
+
+        return response()->json(['products' => productResource::collection($products)]);
     }
 }

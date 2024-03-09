@@ -14,7 +14,9 @@ class cartResource extends JsonResource
      */
     public function toArray(Request $request)
     {
+        // dd($this);
         $product = $this->product;
+        // dd($this->product);
         $product->image_path = asset('storage/' . $product->image);
         $product2 = new productResource($product);
         $product2->quantity = $this->quantity;

@@ -11,105 +11,260 @@ use App\Models\User;
 class productController extends Controller
 {
     
-    public function getProducts(){ //buyer
+//     public function getProducts(){ //buyer
+//         $userId = Auth::id();
+// // dd($userId);
+//     // Retrieve posts where user_id is not the authenticated user's ID
+//     $products = Product::where('user_id', '!=', $userId)->WhereNull('deleted')->get();
+//     $products->each(function ($product) {
+//     $product->image_path = asset('storage/' . $product->image);
+// });
+// // dd($products);
+//     return productResource::collection($products);
+// }
+
+//     public function getMyProducts(){ //seller
+//         $userId = Auth::id();
+//     $products = Product::where('user_id', $userId)->WhereNull('deleted')->get();
+//     $products->each(function ($product) {
+//     $product->image_path = asset('storage/' . $product->image);
+// });
+//     return productResource::collection($products);
+//     }
+
+    // public function addProduct(Request $request){ //seller
+    //     $request->validate([
+    //     'description' => ['required', 'string', 'max:255'],
+    //     'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // adjust the file type and size as needed
+    //     'title' => ['required', 'string', 'max:255'],
+    //     'price' => ['required', 'numeric', 'min:0'],
+    //     'category_id' => ['required', 'exists:categories,id'],
+    //     'quantity' => ['nullable', 'integer', 'min:0'],
+    // ]);
+    //     $product = new Product();
+    //     $imagePath = $request->file('image')->store('images/posts', 'public');
+    //     $product->description = $request->description;
+    //     $product->image = $imagePath;
+    //     $product->title = $request->title;
+    //     $product->price = $request->price;
+    //     $product->category_id = $request->category_id;  
+    //     if($request->quantity) $product->quantity = $request->quantity;
+    //     $product->user_id = $request->user()->id;
+    //     $product->save();
+    //     $product->image_path = asset('storage/' . $imagePath);
+    //     return $product;
+    // }
+
+
+    // public function updateProduct($id, Request $request){ //seller
+    //     $product = Product::find($id);
+    //     // dd($request->description);
+    //     if($request->description) $product->description = $request->description;
+    //     if($request->image) $product->image = $request->image;
+    //     if($request->title) $product->title = $request->title;
+    //     if($request->quantity) $product->quantity = $request->quantity;
+    //     $product->save();
+    //     return $product;
+    // }
+
+
+    // public function getProduct($id, Request $request){ //both
+    //     $Product = Product::find($id);
+    //     $Product->image_path = asset('storage/' . $Product->image);
+    //     // $post->save();
+    //     // return $Product;
+    //     return new productResource($Product);
+    // }
+
+
+    // public function deleteProduct($id){ //seller,admin
+    //     $Product = Product::find($id);
+    //     $user = user::find(Auth::id());
+    //     if($user->role != 'admin') $Product->deleted='user';
+    //     else $Product->deleted='admin';
+    //     $Product->save();
+    //     return $Product;
+    // }
+
+    // public function terminateProduct($id){ //admin
+    //     $Product = Product::find($id);
+    //     $Product->delete();
+    //     return $Product;
+    // }
+
+    // public function restoreProduct($id){ //admin
+    //     $Product = Product::find($id);
+    //     $Product->deleted=null;
+    //     $Product->save();
+    //     return $Product;
+    // }
+
+    //=====================================================================================
+
+    public function getProducts()
+{
+    try {
         $userId = Auth::id();
-// dd($userId);
-    // Retrieve posts where user_id is not the authenticated user's ID
-    $products = Product::where('user_id', '!=', $userId)->WhereNull('deleted')->get();
-    $products->each(function ($product) {
-    $product->image_path = asset('storage/' . $product->image);
-});
-// dd($products);
-    return productResource::collection($products);
+
+        $products = Product::where('user_id', '!=', $userId)->whereNull('deleted')->get();
+
+        $products->each(function ($product) {
+            $product->image_path = asset('storage/' . $product->image);
+        });
+
+        return ProductResource::collection($products);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Something went wrong'], 500);
+    }
 }
 
-    public function getMyProducts(){ //seller
+public function getMyProducts()
+{
+    try {
         $userId = Auth::id();
-// dd($userId);
-    // Retrieve posts where user_id is not the authenticated user's ID
-    $products = Product::where('user_id', $userId)->WhereNull('deleted')->get();
-    $products->each(function ($product) {
-    $product->image_path = asset('storage/' . $product->image);
-});
-    // return response()->json($products);
-    // dd($products);
-    return productResource::collection($products);
-    }
 
-    public function addProduct(Request $request){ //seller
+        $products = Product::where('user_id', $userId)->whereNull('deleted')->get();
+
+        $products->each(function ($product) {
+            $product->image_path = asset('storage/' . $product->image);
+        });
+
+        return ProductResource::collection($products);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Something went wrong'], 500);
+    }
+}
+
+public function addProduct(Request $request)
+{
+    try {
+        $request->validate([
+            'description' => ['required', 'string', 'max:255'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'title' => ['required', 'string', 'max:255'],
+            'price' => ['required', 'numeric', 'min:0'],
+            'category_id' => ['required', 'exists:categories,id'],
+            'quantity' => ['nullable', 'integer', 'min:0'],
+        ]);
+
         $product = new Product();
         $imagePath = $request->file('image')->store('images/posts', 'public');
         $product->description = $request->description;
         $product->image = $imagePath;
         $product->title = $request->title;
         $product->price = $request->price;
-        if($request->quantity) $product->quantity = $request->quantity;
+        $product->category_id = $request->category_id;
+        $product->quantity = $request->input('quantity', 0);
         $product->user_id = $request->user()->id;
         $product->category_id = $request->category_id;
         $product->save();
+
         $product->image_path = asset('storage/' . $imagePath);
-        return $product;
+
+        return response()->json(['message' => 'Product added successfully', 'product' => $product]);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Something went wrong'], 500);
     }
+}
 
+public function updateProduct($id, Request $request)
+{
+    try {
+        $product = Product::findOrFail($id);
 
-    public function updateProduct($id, Request $request){ //seller
-        $product = Product::find($id);
-        // dd($request->description);
-        if($request->description) $product->description = $request->description;
-        if($request->image) $product->image = $request->image;
-        if($request->title) $product->title = $request->title;
-        if($request->quantity) $product->quantity = $request->quantity;
+        $request->validate([
+            'description' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'title' => 'nullable|string|max:255',
+            'quantity' => 'nullable|integer|min:0',
+        ]);
+
+        if ($request->description) {
+            $product->description = $request->description;
+        }
+
+        if ($request->hasFile('image')) {
+            // Handle file upload
+            $imagePath = $request->file('image')->store('images/posts', 'public');
+            $product->image = $imagePath;
+        }
+
+        if ($request->title) {
+            $product->title = $request->title;
+        }
+
+        if ($request->quantity) {
+            $product->quantity = $request->quantity;
+        }
+
         $product->save();
-        return $product;
+
+        $product->image_path = asset('storage/' . $product->image);
+
+        return response()->json(['message' => 'Product updated successfully', 'product' => $product]);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Something went wrong'], 500);
+    }
+}
+
+public function getProduct($id, Request $request)
+{
+    try {
+        $product = Product::findOrFail($id);
+        $product->image_path = asset('storage/' . $product->image);
+
+        return new ProductResource($product);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Product not found'], 404);
+    }
+}
+
+public function deleteProduct($id)
+{
+    $product = Product::find($id);
+
+    if (!$product) {
+        return response()->json(['error' => 'Product not found'], 404);
     }
 
+    $user = Auth::user();
 
-    public function getProduct($id, Request $request){ //both
-        $Product = Product::find($id);
-        $Product->image_path = asset('storage/' . $Product->image);
-        // $post->save();
-        // return $Product;
-        return new productResource($Product);
+    if ($user->role != 'admin') {
+        $product->deleted = 'user';
+    } else {
+        $product->deleted = 'admin';
     }
 
+    $product->save();
 
-    public function deleteProduct($id){ //seller,admin
-        $Product = Product::find($id);
-        $user = user::find(Auth::id());
-        if($user->role != 'admin') $Product->deleted='user';
-        else $Product->deleted='admin';
-        $Product->save();
-        return $Product;
+    return response()->json(['message' => 'Product deleted successfully', 'product' => $product]);
+}
+
+public function terminateProduct($id)
+{
+    $product = Product::find($id);
+
+    if (!$product) {
+        return response()->json(['error' => 'Product not found'], 404);
     }
 
-    public function terminateProduct($id){ //admin
-        $Product = Product::find($id);
-        $Product->delete();
-        return $Product;
+    $product->delete();
+
+    return response()->json(['message' => 'Product terminated successfully', 'product' => $product]);
+}
+
+public function restoreProduct($id)
+{
+    $product = Product::find($id);
+
+    if (!$product) {
+        return response()->json(['error' => 'Product not found'], 404);
     }
 
-    public function restoreProduct($id){ //admin
-        $Product = Product::find($id);
-        $Product->deleted=null;
-        $Product->save();
-        return $Product;
-    }
+    $product->deleted = null;
+    $product->save();
 
-    // In your controller or route
-// public function showImage($id)
-// {
-//     $post = Post::find($id);
-// dd($post->image);
-//     if (!$post) {
-//         abort(404); // Image not found
-//     }
-
-//     // Set appropriate headers
-//     header('Content-Type: image/jpeg');
-//     header('Content-Length: ' . strlen($post->image));
-// dd($post->image);
-//     // Output the image data
-//     echo $post->image;
-// }
+    return response()->json(['message' => 'Product restored successfully', 'product' => $product]);
+}
 
 }

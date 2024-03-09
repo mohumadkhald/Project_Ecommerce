@@ -24,7 +24,7 @@
 .loginReq {
   margin-top: 2vw;
   width: 90vw;
-  background-color: #ddd;
+  background-color: #000000;
   margin-bottom: 5vw;
 }
 
@@ -57,11 +57,12 @@
 }
 
 .detailsReq button {
-  background-color: #4079eb;
+  background: linear-gradient(to bottom, #700c9eb6, rgb(0, 0, 0));
   padding: .5vw;
   margin-top: .5vw;
   position: relative;
   left: -.5vw;
+border-radius: 20px;
 }
 
 .loginRe {
@@ -110,3 +111,10 @@
 }
 
 /* Add more media queries as needed for different screen sizes */
+#btnn{
+  background: linear-gradient(to bottom, #700c9eb6, rgb(0, 0, 0));
+
+}
+
+
+
