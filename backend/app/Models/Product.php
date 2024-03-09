@@ -26,8 +26,8 @@ class Product extends Model
     }
 
     // Define a relationship with the ExchangeRequest model
-    public function exchangeRequests()
-    {
-        return $this->hasMany(ExchangeRequest::class);
-    }
+    // public function exchangeRequests()
+    // {
+    //     return $this->hasMany(ExchangeRequest::class);
+    // }
 }

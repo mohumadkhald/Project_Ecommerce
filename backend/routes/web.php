@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,28 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+
+
+route::get('/redirect', [AdminController::class, 'redirect']);
+route::get('/view_category', [AdminController::class, 'view_category']);
+route::get('/cat_delete/{id}', [AdminController::class, 'cat_delete']);
+route::get('/cat_update/{id}', [AdminController::class, 'cat_update']);
+route::post('/add_category', [AdminController::class, 'add_category']);
+
+route::get('/view_product', [AdminController::class, 'view_product']);
+
+route::get('/product_delete/{id}', [AdminController::class, 'product_delete']);
+
+route::get('/view_brand', [AdminController::class, 'view_brand']);
+
+route::post('/add_brand', [AdminController::class, 'add_brand']);
+
+route::get('/brand_delete/{id}', [AdminController::class, 'brand_delete']);
+
+route::get('/view_users', [AdminController::class, 'view_users']);
+route::get('/user_delete/{id}', [AdminController::class, 'user_delete']);
+
+route::get('/order', [AdminController::class, 'order']);
+
+route::get('/search', [AdminController::class, 'search']);
