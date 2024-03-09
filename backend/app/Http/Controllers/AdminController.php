@@ -43,6 +43,8 @@ class AdminController extends Controller
             }
 
             return view('admin.home', compact('order_delivered', 'order_not_delivered', 'total_prodct', 'total_order', 'total_buyers', 'total_sellers', 'total_revenue'));
+        } else {
+            return redirect()->back();
         }
     }
 
