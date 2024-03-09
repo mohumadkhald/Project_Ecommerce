@@ -6,6 +6,7 @@ import { CategoryService } from '../../category.service';
 import { CatShowComponent } from '../cat-show/cat-show.component';
 import { CardComponent } from '../card/card.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
     selector: 'app-products',
     templateUrl: './products.component.html',
     styleUrl: './products.component.css',
-    imports: [NgClass, NgStyle, NgFor, NgIf, CommonModule, SidebarComponent,CardComponent,CatShowComponent]
+    imports: [NgClass, NgStyle, NgFor, NgIf, CommonModule, SidebarComponent,CardComponent,CatShowComponent,RouterLink]
 })
 export class ProductsComponent   {
 
@@ -44,5 +45,5 @@ export class ProductsComponent   {
     // this.games = this.games.filter(game => game.id !== id)
   }
 
-  
+
  }
