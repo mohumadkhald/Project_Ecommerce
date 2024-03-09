@@ -32,7 +32,12 @@ export class ProfileComponent implements OnInit {
     .subscribe(
       (response: any) => {
         // Handle successful response
-        this.userData = response;
+        if(response && response.user !== null && response.user !== undefined) 
+        {
+          this.userData = response.user;
+          console.log(this.userData);
+        }
+
       },
       error => {
         // Handle error

@@ -19,9 +19,9 @@
           <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false">
             <img src="../../../assets/Mohamed-img.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
-            <!-- <ng-container *ngIf="userData"> -->
+            <ng-container *ngIf="userData && userData.name !== null">
               <span class="ms-2">{{ userData.name }}</span>
-            <!-- </ng-container> -->
+            </ng-container>
           </a>
           <ul class="dropdown-menu text-small bg-black">
             <!-- <li><a class="dropdown-item bg-black" routerLink="#">New project...</a></li> -->

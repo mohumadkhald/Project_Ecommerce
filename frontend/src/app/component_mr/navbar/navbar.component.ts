@@ -29,8 +29,10 @@ export class NavbarComponent implements OnInit {
     })
     .subscribe(
       (response: any) => {
+        if(response){
+          this.userData = response.user;
+        }
         // Handle successful response
-        this.userData = response;
       },
 
     );

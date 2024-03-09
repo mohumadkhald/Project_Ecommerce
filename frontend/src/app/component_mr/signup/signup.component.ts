@@ -5,7 +5,6 @@ import {FormsModule} from '@angular/forms';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, RouterLink } from '@angular/router';
-import { RegisterService } from '../../register.service';
 import { CheckboxModule } from 'primeng/checkbox';
 
 @Component({
