@@ -20,17 +20,43 @@ export class CardComponent {
   constructor(private router: Router,private cartService: CartService) {}
   ngOnInit(): void {
     this.cartItems = this.cartService.getCart();
-    
+
   }
   addToCart(product: any): void {
     this.cartService.addToCart(this.productItem);
   }
   redirectToDetails(id: number) {
-    this.router.navigate([`product/details/${id}`], { 
-     
+    this.router.navigate([`product/details/${id}`], {
+
     });
-    
+
   }
+
+
+//   updateHeartColor(cardId: number) {
+//     // color change
+//     const cardcard = this.el.nativeElement.querySelector('#cardcard');
+//     const watchList = JSON.parse(localStorage.getItem('watchList') || '[]');
+//     const index = watchList.indexOf(cardId);
+//     if (index === -1) {
+//       cardcard.classList.remove('text-danger');
+//       cardcard.classList.add('text-black');
+
+//     } else {
+//       cardcard.classList.remove('text-black');
+//       cardcard.classList.add('text-danger');
+
+//     }
+// }
+
+
+
+
+
+
+
+
+
 }
 
 
