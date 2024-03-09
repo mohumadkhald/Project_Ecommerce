@@ -26,6 +26,12 @@
           "user-select"
         ]
       }
+    ],
+    "axe/parsing": [
+      "default",
+      {
+        "duplicate-id-active": "off"
+      }
     ]
   }
 }
