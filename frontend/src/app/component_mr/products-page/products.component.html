@@ -1,39 +1,58 @@
 
 
+<section class="border-bottom-1 mt-5 d-flex align-items-center justify-content-center" style="height: 15vh;   background: linear-gradient(to bottom, #9905ddb6, rgb(0, 0, 0));
+;">
+<h1 class="text-center bg-transparent align-items-center">Shop</h1>
 
-<div style=" height :50px"></div>
 
-<h1 class="text-center ">Products App</h1>
+</section>
 
 
-<div *ngFor="let category of categories" class="list-group border-1  " style="border: 1px solid #ae00ff ;">
-<app-cat-show></app-cat-show>
-<div class="">
-    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4  row-cols-xxl-4">
-        <ng-container *ngFor="let product of products; trackBy: trackById; let i = index">
-                <div>
-                        <app-card ></app-card>
-                </div>
-        </ng-container>
-    </div>
+
+
+<div class="row border-bottom-1 z-1">
+  <div class="col-3 d-none d-lg-block  mt-2 z-0" >
+    <app-sidebar class="position-fixed"></app-sidebar>
+  </div>
+  <div class="  col-lg-9 " style="min-height:100vh ;">
+    <section class="mt-2">
+      <div class="container mt-3">
+        <div class="row">
+          <div class="col-md-4">
+            <!-- Search Form -->
+            <form class="form-inline">
+              <div class="form-group mx-sm-3 mb-2">
+                <label for="searchInput" class="sr-only">Search</label>
+                <input type="text" class="form-control bg-transparent  " id="searchInput" placeholder="Search">
+              </div>
+              <button type="submit" class="btn  mb-2 text-white" style="background: linear-gradient(to bottom, #9905ddb6, rgb(0, 0, 0));">Search</button>
+            </form>
+          </div>
+          <div class="col-md-4">
+            <!-- Sort Form -->
+            <form class="form-inline">
+              <label class="my-1 mr-2 text-white" for="sortSelect">Sort by:</label>
+              <select class="custom-select bg-transparent my-1 mr-sm-2" id="sortSelect">
+                <option selected>Choose category</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </form>
+          </div>
+          <div class="col-md-4">
+            <!-- Search Form -->
+            <form class="form-inline">
+
+              <button type="submit" class="btn  mb-2 text-white" style="background: linear-gradient(to bottom, #9905ddb6, rgb(0, 0, 0));">Add product</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+<div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-12" *ngFor="let product of products; trackBy: trackById; let i = index">
+        <app-card [productItem]="product"></app-card>
+      </div></div>
+  </div>
 </div>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

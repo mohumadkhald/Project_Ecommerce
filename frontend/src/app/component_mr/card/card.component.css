@@ -80,3 +80,19 @@ margin-left: 3px;
 border-radius: 10px;
 box-shadow: 0 0 10px rgb(161, 5, 175) ;
 }
+.burble{
+color: rgb(161, 5, 175);
+}
+.custom-button {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  outline: none; /* Remove outline on focus */
+}
+
+.custom-button:active {
+  transform: scale(0.95); /* Scale down the button on press */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: white;/* Add a subtle box-shadow on press */
+}

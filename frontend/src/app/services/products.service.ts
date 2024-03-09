@@ -9,11 +9,11 @@ export class ProductsService {
   constructor(private http: HttpClient) { }
 
   getProductsList(){
-    return this.http.get('http://127.0.0.1:8001/api/categories/index')
+    return this.http.get('http://127.0.0.1:8000/api/products')
   }
 
   getProductsDetails(id : number){
-    return this.http.get(`http://127.0.0.1:8001/api/brands/${id}`)
+    return this.http.get(`http://127.0.0.1:8000/api/brands/${id}`)
   }
 
 }

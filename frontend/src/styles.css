@@ -3,7 +3,6 @@
 
 
 /* You can add global styles to this file, and also import other style files */
-html, body { }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -28,7 +27,7 @@ color: white !important;
 
 }
 li:hover {
-  background: linear-gradient(to bottom, #700c9eb6, rgb(0, 0, 0));
+  background: linear-gradient(to bottom, #9905ddb6, rgb(0, 0, 0));
 border-radius: 10px;
 }
 span
@@ -70,7 +69,7 @@ tr[ng-reflect-router-link] {
 }
 
 ::-webkit-scrollbar {
-  width: 20px;
+  width: 10px;
 }
 
 /* Track */

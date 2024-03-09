@@ -6,7 +6,7 @@
                     <div class="card-body p-4">
 
                         <div class="row">
-                            <ng-container *ngIf="getCountOfItems()=== 0; else content">
+                            <ng-container *ngIf="getCountOfItems()!== 0; else content">
                                 <div class="col-lg-7">
                                     <h5 class="mb-3">
                                         <a routerLink="../" class=""><i class="fas fa-long-arrow-alt-left me-2"></i>
@@ -15,47 +15,48 @@
                                     </h5>
                                     <hr>
 
-
-
                                     <div class="d-flex justify-content-between p-2 align-items-center mb-3">
-                                      <div class="class=" col-5 btn btn-danger>
-                                          <p class="mb">You Have {{getCountOfItems()}} Items in your cart</p>
-                                      </div>
-                                      <button class="offset-2 col-3 btn btn-danger" (click)="clearCart()">Clear
-                                          Cart</button>
-                                  </div>
-                                  <div class="card mb-3" *ngFor="let item of cartItems">
-                                      <div class="card-body">
-                                          <div class="d-flex justify-content-between">
-                                              <div class="d-flex flex-row align-items-center">
-                                                  <div>
-                                                      <img [src]="item.product.thumbnail" class="img-fluid rounded-3"
-                                                          alt="Shopping item" style="width: 90px;">
-                                                  </div>
-                                                  <div class="ms-3">
-                                                      <h5>{{item.product.title}}</h5>
-                                                      <p class="small mb-0 me-3">
-                                                          <button style="width: 30px; height: 30px; padding: 0;"
-                                                              class="btn btn-primary me-3"
-                                                              (click)="increaseQuantity(item.product)">+</button>
-                                                          <button style="width: 30px; height: 30px; padding: 0;"
-                                                              class="btn btn-primary"
-                                                              (click)="decreaseQuantity(item.product)">-</button>
-                                                      </p>
-                                                  </div>
-                                              </div>
-                                              <div class="ms-3">
-                                                  <div>
-                                                      <h5 class="fw-normal mb-0">Quantity: {{ item.quantity }}</h5>
-                                                  </div>
-                                                  <div style="width: 120px;">
-                                                      <h5 class="mb-0 mt-2">{{item.product.price | currency}}</h5>
-                                                  </div>
-                                                  <button class="mt-2 btn btn-danger"(click)="removeFromCart(item.product)">Remove</button>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
+
+                                        <div class="class=" col-5 btn btn-danger>
+                                            <p class="mb">You Have {{getCountOfItems()}} Items in your cart</p>
+                                        </div>
+                                        <button class="offset-2 col-3 btn btn-danger" (click)="clearCart()">Clear
+                                            Cart</button>
+                                    </div>
+                                    <div class="card mb-3" *ngFor="let item of cartItems">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <div>
+                                                        <img src="http://127.0.0.1:8000/{{item.product.image}}"
+                                                            class="card-img-top" alt="Shopping item"
+                                                            style="width: 90px;">
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <h5>{{item.product.name}}</h5>
+                                                        <p class="small mb-0 me-3">
+                                                            <button style="width: 30px; height: 30px; padding: 0;"
+                                                                class="btn btn-primary me-3"
+                                                                (click)="increaseQuantity(item.product)">+</button>
+                                                            <button style="width: 30px; height: 30px; padding: 0;"
+                                                                class="btn btn-primary"
+                                                                (click)="decreaseQuantity(item.product)">-</button>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="ms-3">
+                                                    <div>
+                                                        <h5 class="fw-normal mb-0">Quantity: {{ item.quantity }}</h5>
+                                                    </div>
+                                                    <div style="width: 120px;">
+                                                        <h5 class="mb-0 mt-2">{{item.product.price | currency}}</h5>
+                                                    </div>
+                                                    <button class="mt-2 btn btn-danger"
+                                                        (click)="removeFromCart(item.product)">Remove</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
 
 
@@ -98,35 +99,47 @@
                                         <div class="card-body custom-form ">
                                             <div class="d-flex justify-content-between align-items-center mb-3">
                                                 <h5 class="mb-0">Card details</h5>
-                                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" class="img-fluid rounded-3" style="width: 35px;" alt="Avatar">
+                                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+                                                    class="img-fluid rounded-3" style="width: 35px;" alt="Avatar">
                                             </div>
 
                                             <p class="small mb-2">Card type</p>
                                             <div class="mb-2">
-                                                <a href="#!" class="text-white"><i class="fab fa-cc-mastercard fa-2x me-2"></i></a>
-                                                <a href="#!" class="text-white"><i class="fab fa-cc-visa fa-2x me-2"></i></a>
-                                                <a href="#!" class="text-white"><i class="fab fa-cc-amex fa-2x me-2"></i></a>
-                                                <a href="#!" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
+                                                <a href="#!" class="text-white"><i
+                                                        class="fab fa-cc-mastercard fa-2x me-2"></i></a>
+                                                <a href="#!" class="text-white"><i
+                                                        class="fab fa-cc-visa fa-2x me-2"></i></a>
+                                                <a href="#!" class="text-white"><i
+                                                        class="fab fa-cc-amex fa-2x me-2"></i></a>
+                                                <a href="#!" class="text-white"><i
+                                                        class="fab fa-cc-paypal fa-2x"></i></a>
                                             </div>
 
                                             <form>
                                                 <div class="form-outline form-white mb-3">
-                                                    <input type="text" id="typeName" class="form-control form-control-lg" placeholder="Name" />
+                                                    <input type="text" id="typeName"
+                                                        class="form-control form-control-lg" placeholder="Name" />
                                                 </div>
 
                                                 <div class="form-outline form-white mb-3">
-                                                    <input type="text" id="typeText" class="form-control form-control-lg" placeholder="Card Number" />
+                                                    <input type="text" id="typeText"
+                                                        class="form-control form-control-lg"
+                                                        placeholder="Card Number" />
                                                 </div>
 
                                                 <div class="row mb-3">
                                                     <div class="col-md-6">
                                                         <div class="form-outline form-white">
-                                                            <input type="text" id="typeExp" class="form-control form-control-lg" placeholder="MM/YYYY" />
+                                                            <input type="text" id="typeExp"
+                                                                class="form-control form-control-lg"
+                                                                placeholder="MM/YYYY" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-outline form-white">
-                                                            <input type="password" id="typeText" class="form-control form-control-lg" placeholder="CVV" />
+                                                            <input type="password" id="typeText"
+                                                                class="form-control form-control-lg"
+                                                                placeholder="CVV" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -151,7 +164,8 @@
                                             </div>
 
                                             <button type="button" id="btnn" class="btn  btn-block btn-lg">
-                                                <span class="bg-transparent">Checkout <i class="fas fa-long-arrow-alt-right ms-2 bg-transparent"></i></span>
+                                                <span class="bg-transparent">Checkout <i
+                                                        class="fas fa-long-arrow-alt-right ms-2 bg-transparent"></i></span>
                                             </button>
 
                                         </div>
@@ -163,13 +177,19 @@
                                 <!-- Your main content goes here -->
                                 <div class="loginReq">
                                     <div class="loginReqImg">
-                                        <img src="https://m.media-amazon.com/images/G/01/cart/empty/kettle-desaturated._CB445243794_.svg" alt="Nice Day">
+                                        <img src="https://m.media-amazon.com/images/G/01/cart/empty/kettle-desaturated._CB445243794_.svg"
+                                            alt="Nice Day">
                                     </div>
                                     <div class="detailsReq">
                                         <h2>Your Cart Empty</h2>
                                         <p><a routerLink="../">Products Today</a></p>
-                                        <button class="btnLog"><a style="text-decoration: none; color: white" routerLink="/user/login">Sign in To Your Acoount</a></button>
-                                        <button style="background-color: white;" class="btnLog"><a style="text-decoration: none; color: rgb(255, 255, 255)" routerLink="/user/signup">Sign Up Now</a></button>
+                                        <div *ngIf="!auth();">
+                                            <button class="btnLog"><a style="text-decoration: none; color: white"
+                                                    routerLink="/user/login">Sign in To Your Acoount</a></button>
+                                            <button style="background-color: white;" class="btnLog"><a
+                                                    style="text-decoration: none; color: rgb(255, 255, 255)"
+                                                    routerLink="/user/signup">Sign Up Now</a></button>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -177,12 +197,14 @@
                                 <div class="loginRe">
                                     <p>
                                         The price and availability of items at MyShopinng.com are subject to change.
-                                        The Cart is a temporary place to store a list of your items and reflects each item's most recent price.
-                                        Shopping Cart Learn moreDo you have a gift card or promotional code? We'll ask you to enter your claim code
+                                        The Cart is a temporary place to store a list of your items and reflects each
+                                        item's most recent price.
+                                        Shopping Cart Learn moreDo you have a gift card or promotional code? We'll ask
+                                        you to enter your claim code
                                         when it's time to pay.
                                     </p>
                                 </div>
-                              </ng-template>
+                            </ng-template>
                         </div>
 
                     </div>

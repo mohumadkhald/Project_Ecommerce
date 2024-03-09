@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   standalone: true,
@@ -18,10 +19,13 @@ export class CartComponent implements OnInit {
   shipping: number = 20;
   counter: number = 0;
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private authService: AuthService) {
     this.updateTotalPrice();
   }
 
+  auth() {
+    return this.authService.isAuthenticated();
+  }
   ngOnInit(): void {
     this.cartItems = this.cartService.getCart();
     
@@ -50,9 +54,11 @@ export class CartComponent implements OnInit {
     return this.cartService.getCountOfItems();
   }
 
+
   clearCart(): void {
     this.cartService.clearCart();
     this.updateTotalPrice();
     this.cartItems = this.cartService.getCart();
+    
   }
 }

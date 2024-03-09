@@ -156,6 +156,7 @@ public function addProduct(Request $request)
         $product->category_id = $request->category_id;
         $product->quantity = $request->input('quantity', 0);
         $product->user_id = $request->user()->id;
+        $product->category_id = $request->category_id;
         $product->save();
 
         $product->image_path = asset('storage/' . $imagePath);

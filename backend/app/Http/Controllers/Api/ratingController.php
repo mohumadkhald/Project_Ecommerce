@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -40,38 +41,38 @@ class ratingController extends Controller
     //==================================================================
 
     public function addRating($id, Request $request)
-{
-    try {
-        $request->validate([
-            'rating' => ['required', 'numeric', 'min:1', 'max:5'],
-        ]);
+    {
+        try {
+            $request->validate([
+                'rating' => ['required', 'numeric', 'min:1', 'max:5'],
+            ]);
 
-        return DB::transaction(function () use ($id, $request) {
-            $purchasedProduct = PurchasedProduct::find($id);
+            return DB::transaction(function () use ($id, $request) {
+                $purchasedProduct = PurchasedProduct::find($id);
 
-            if (!$purchasedProduct) {
-                return response()->json(['error' => 'Purchased product not found'], 404);
-            }
+                if (!$purchasedProduct) {
+                    return response()->json(['error' => 'Purchased product not found'], 404);
+                }
 
-            $purchasedProduct->rating = $request->rating;
-            $purchasedProduct->save();
+                $purchasedProduct->rating = $request->rating;
+                $purchasedProduct->save();
 
-            $product = Product::find($purchasedProduct->references);
+                $product = Product::find($purchasedProduct->references);
 
-            if (!$product) {
-                return response()->json(['error' => 'Associated product not found'], 404);
-            }
+                if (!$product) {
+                    return response()->json(['error' => 'Associated product not found'], 404);
+                }
 
-            $results = PurchasedProduct::where('references', $purchasedProduct->references)->get();
-            $averageRating = $results->avg('rating');
-            $product->rating = $averageRating;
-            $product->save();
+                $results = PurchasedProduct::where('references', $purchasedProduct->references)->get();
+                $averageRating = $results->avg('rating');
+                $product->rating = $averageRating;
+                $product->save();
 
-            return response()->json(['message' => 'Rating added successfully', 'product' => new ProductResource($product)]);
-        });
-    } catch (\Exception $e) {
-        return response()->json(['error' => 'Failed to add rating'], 500);
+                return response()->json(['message' => 'Rating added successfully', 'product' => new ProductResource($product)]);
+            });
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to add rating'], 500);
+        }
     }
-}
-    
+
 }

@@ -1,54 +1,60 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, NgModule } from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router, RouterLink } from '@angular/router';
+import { CheckboxModule } from 'primeng/checkbox';
+
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, CheckboxModule, FormsModule, RouterLink],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
 export class SignupComponent {
-  signupForm: FormGroup;
+  device_name: string = "Unknown";
+  errors: any = [];
 
-  constructor(private fb: FormBuilder) {
-    this.signupForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', Validators.required],
-    }, {
-      validator: this.passwordConfirmationValidator('password', 'confirmPassword')
-    });
+  constructor(private http: HttpClient, private router: Router) {}
+
+onSubmit(myForm: NgForm) {
+  const userAgent = navigator.userAgent;
+  let device_name = '';
+
+  if (/android/i.test(userAgent)) {
+    device_name = "Android Device";
+  } else if (/iPad|iPhone|iPod/.test(userAgent)) {
+    device_name = "iOS Device";
+  } else if (/Macintosh/.test(userAgent)) {
+    device_name = "Mac";
+  } else if (/Windows/.test(userAgent)) {
+    device_name = "Windows PC";
+  } else if (/Linux/.test(userAgent)) {
+    device_name = "Linux PC";
   }
-  passwordConfirmationValidator(controlName: string, matchingControlName: string) {
-    return (formGroup: FormGroup) => {
-      const control = formGroup.controls[controlName];
-      const matchingControl = formGroup.controls[matchingControlName];
 
-      if (matchingControl.errors && !matchingControl.errors['passwordMismatch']) {
-        return;
+  const formData = { ...myForm.value, device_name };
+
+  this.http.post('http://127.0.0.1:8000/api/user', formData)
+    .subscribe(
+      (response: any) => {
+        console.log('Signup successful:', response);
+        this.router.navigate(['/user/login'])
+      },
+      registerError => {
+        // Extract errors from the registerError object
+        const errorObject = registerError.error.errors;
+        if (errorObject) {
+          // Convert the error object into an array of error messages
+          this.errors = Object.values(errorObject).flat();
+        } else {
+          this.errors = ['Registration failed'];
+        }
       }
-
-      if (control.value !== matchingControl.value) {
-        matchingControl.setErrors({ passwordMismatch: true });
-      } else {
-        matchingControl.setErrors(null);
-      }
-    };
-  }
-
-  onSubmit() {
-    // Handle form submission here
-    if (this.signupForm.valid) {
-      console.log('Form submitted:', this.signupForm.value);
-    } else {
-      console.log('Form is invalid. Please correct the errors.');
-    }
-  }
+    );
+}
 }
 

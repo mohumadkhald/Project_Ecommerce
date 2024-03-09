@@ -1,21 +1,10 @@
-.product-card img {
-    height: 220px;
-    width: 80%vw;
-    object-fit: cover;
+#searchInput::placeholder {
+  color: white;
+}
+#sortSelect::placeholder {
+  color: white;
 }
 
-.product-card {
-    box-shadow: 10px 4px 8px rgba(0, 0, 0, 0.); /* Add your desired box shadow styles here */
-    transition: box-shadow 0.3s ease-in-out; /* Add a smooth transition effect if desired */
-  }
-
-  .product-card:hover {
-    box-shadow: 10px 8px 16px rgba(0, 0, 0, 0.4); /* Add a different box shadow on hover if desired */
-  }
-
-
-@media screen and (min-width: 1400px) {
-    .row-cols-xlg-4 {
-      column-count: 5; /* Set the desired number of columns for extra-large screens */
-    }
-  }
+#sortSelect option:checked {
+  color: white;
+}

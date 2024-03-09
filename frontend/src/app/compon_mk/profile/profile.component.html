@@ -6,11 +6,10 @@
         <div class="card border-0">
           <div class="rounded-top text-white d-flex flex-row" style="background-color: #000000; height:200px; ">
             <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-              <img src="../../../assets/Mohamed-img.jpg"
-                alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
-                style="width: 150px; z-index: 1">
-              <button type="button" class="btn border-white border-1 border-round text-white" data-mdb-ripple-color="white"
-                style="z-index: 1;">
+              <img src="../../../assets/Mohamed-img.jpg" alt="Generic placeholder image"
+                class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+              <button type="button" class="btn border-white border-1 border-round text-white"
+                data-mdb-ripple-color="white" style="z-index: 1;">
                 Edit profile
               </button>
             </div>
@@ -54,62 +53,65 @@
 
 
 
-<div class="col-7 border-1 border-white ms-5">
-  <div style=" height :50px"></div>
-  <div class=" p-4 shadow-2 border-round w-full  mx-auto  " id="box">
-    <div class="text-center ">
-      <div class="text-900 text-3xl font-medium p-3 text-white"> your information !</div>
-    </div>
-    <form>
-      <div class="row">
-        <div class="col-6">
-          <label for="email1" class="block text-900 font-medium p-2 text-white">Email</label>
-          <input type="text" id="email1" placeholder="Email" class="w-full p-3 form control border-round">
+      <div class="col-7 border-1 border-white ms-5">
+        <div style=" height :50px"></div>
+        <div class=" p-4 shadow-2 border-round w-full  mx-auto  " id="box">
+          <div class="text-center ">
+            <div class="text-900 text-3xl font-medium p-3 text-white"> your information !</div>
+          </div>
+          <form>
+            <div class="row">
+              <div class="col-6">
+                <label for="email1" class="block text-900 font-medium p-2 text-white">Email</label>
+                <input type="text" id="email1" placeholder="{{userData.email}}" class="w-full p-3 form control border-round">
 
-          <label for="" class="block text-900 font-medium p-2 text-white">User Name</label>
-          <input type="text" id="" placeholder="{{ userData.name }}" class="w-full p-3 form control border-round">
+                <label for="" class="block text-900 font-medium p-2 text-white">User Name</label>
+                <input type="text" id="" placeholder="{{ userData.name }}" class="w-full p-3 form control border-round">
 
-          <label for="" class="block text-900 font-medium p-2 text-white">User Name</label>
-          <input type="text" id="" placeholder="User Name" class="w-full p-3 form control border-round">
+                <label for="" class="block text-900 font-medium p-2 text-white">phone number</label>
+                <input type="number" id="" placeholder="{{userData.phone_number }}" class="w-full p-3 form control border-round">
 
 
+
+              </div>
+
+
+              <div class="col-6">
+
+                <label for="" class="block text-900 font-medium p-2 text-white">old password</label>
+                <input type="password" id="" name="password" placeholder="{{userData.Password}}" class=" w-full p-3 border-round ">
+
+                <label for="" class="block text-900 font-medium p-2 text-white">new Password</label>
+                <input type="password" id="" name="password" placeholder="Password" class="w-full p-3 border-round ">
+
+                <label for="gender" class="block text-900 font-medium p-2 text-white">Status</label>
+                <select class="form-select w-full p-3 bg-transparent " style="color: white;" id="gender" name="gender">
+                  <option class="text-white" value="" disabled selected>{{userData.role}}</option>
+
+                  <option value="male">seller</option>
+                  <option value="female">buyer</option>
+                </select>
+              </div>
+
+              <div class="row">
+
+                <label for="text" class="block text-900 font-medium p-2 text-white">Address</label>
+                <input type="text" id="password" name="password" placeholder="{{userData.address}}"
+                  class="w-full py-3 mb-4 ms-3 border-round">
+
+                <button label="Sign In" type="submit" class="w-full  mb-3 border-round border py-3 ms-3"><i
+                    class="fa fa-user me-3"></i>Update</button>
+
+              </div>
+
+            </div>
+          </form>
 
         </div>
-
-
-        <div class="col-6">
-
-          <label for="" class="block text-900 font-medium p-2 text-white">Password</label>
-          <input type="password" id="" name="password" placeholder="Password" class=" w-full p-3 border-round ">
-
-          <label for="" class="block text-900 font-medium p-2 text-white">Confirm Password</label>
-          <input type="password" id="" name="password" placeholder="Password" class="w-full p-3 border-round ">
-
-          <label for="gender" class="block text-900 font-medium p-2 text-white">Gender</label>
-          <select class="form-select w-full p-3 bg-transparent " style="color: white;" id="gender" name="gender">
-            <option class="text-white" value="" disabled selected>Select Gender</option>
-
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </div>
-
-  <div class="row">
-
-        <label for="text" class="block text-900 font-medium p-2 text-white">Adress</label>
-        <input type="text" id="password" name="password" placeholder="Adress" class="w-full py-3 mb-4 ms-3 border-round">
-
-        <button label="Sign In" type="submit" class="w-full  mb-3 border-round border py-3 ms-3"><i
-            class="fa fa-user me-3"></i>Register</button>
-
-  </div>
 
       </div>
-    </form>
 
+
+    </div>
   </div>
-
-</div>
-
-
-</div></div></section>
+</section>

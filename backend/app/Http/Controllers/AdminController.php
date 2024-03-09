@@ -37,7 +37,7 @@ class AdminController extends Controller
             $order_price = 0;
 
             foreach ($purchase_products as $product) {
-                $order_price = Product::find($product->product_id)->price;
+                $order_price = Product::find($product->references)->price;
                 $total_revenue = $total_revenue + $order_price * $product->quantity;
 
             }
@@ -173,6 +173,14 @@ class AdminController extends Controller
             ->get();
 
         return view('admin.view_product', compact('data'));
+    }
+
+    public function delivered($id)
+    {
+        $order = Purchase::find($id);
+        $order->state = "delivered";
+        $order->save();
+        return redirect()->back();
     }
 }
 
