@@ -74,7 +74,7 @@
             <td>{{ $order->quantity }}</td>
             <td>{{ $order->quantity * $order->product->price }}</td>
             <!-- ask omar -->
-            <td>{{ $order->delivery_status }}</td> 
+            <td>{{ $order->purchase->state }}</td> 
             <td>
                 <img src="{{ asset('storage/' . optional($order->product)->image) }}" alt="Product Image" style="max-width: 100px; max-height: 100px;">
             </td>
