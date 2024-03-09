@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { CategoryService } from '../../category.service';
 import { NgFor, NgIf } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,7 +14,7 @@ import { RouterLink } from '@angular/router';
 export class SidebarComponent {
   categories: any[] = [];
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService, private router:Router) {}
 
   ngOnInit(): void {
     this.fetchCategories();
@@ -30,4 +30,12 @@ export class SidebarComponent {
       }
     );
   }
+
+  redirectToProducts(id: number) {
+    this.router.navigate([`products/${id}`], { 
+     
+    });
+    
+  }
+
 }

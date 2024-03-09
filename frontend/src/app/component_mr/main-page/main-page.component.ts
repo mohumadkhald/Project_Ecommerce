@@ -30,16 +30,16 @@ export class MainPageComponent implements OnInit {
     return this.authService.isAuthenticated();
   }
   ngOnInit() {
-    this.ProductsService.getProductsList().subscribe((res: any) => {
-      console.log(res.data);
-      // Assuming the response structure is { products: [], total: number, skip: number, limit: number }
-      if (res && res.data) {
-        this.products = res.data;
-        // console.log(this.products);
-      } else {
-        console.error('No products found in the response.');
-      }
-    })
+    // this.ProductsService.getProductsList().subscribe((res: any) => {
+    //   console.log(res.data);
+    //   // Assuming the response structure is { products: [], total: number, skip: number, limit: number }
+    //   if (res && res.data) {
+    //     this.products = res.data;
+    //     // console.log(this.products);
+    //   } else {
+    //     console.error('No products found in the response.');
+    //   }
+    // })
   }
   trackById(index: number, item: any): number {
     return item.id;
