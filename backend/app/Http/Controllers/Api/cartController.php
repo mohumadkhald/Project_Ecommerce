@@ -91,7 +91,7 @@ class cartController extends Controller
         return response()->json(['error' => 'Unauthorized'], 401);
     }
 
-    $carted = $user->cartedProducts()->where('product_id', $id)->first();
+    $carted = AddedToCartProduct::where('product_id', $id)->where('buyer_id', Auth::id())->first();
 
     if ($carted) {
         return $this->increase($id);
@@ -102,14 +102,15 @@ class cartController extends Controller
             return response()->json(['error' => 'Product not available'], 400);
         }
 
-        $carted = $user->cartedProducts()->create([
+        $carted = AddedToCartProduct::create([
             'product_id' => $id,
-            'quantity' => 1,
+            'buyer_id' => $request->user()->id,
+            'quantity' => 1
         ]);
 
         $user->increment('cart');
 
-        return response()->json(['message' => 'Product added to cart', 'carted' => $carted]);
+        return response()->json(['message' => 'Product added to cart', 'carted' => new cartResource($carted)]);
     }
 }
 
