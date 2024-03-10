@@ -22,7 +22,7 @@ export class ProductsComponent implements OnInit {
   categories: any[] = [];
   title = 'Products';
   products: Product[] = [];
-  isSeller: boolean = true;
+  isSeller: boolean = false;
 
   constructor(
     private productsService: ProductsService,

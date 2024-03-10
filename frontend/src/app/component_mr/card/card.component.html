@@ -1,7 +1,7 @@
 <div class=" mb-2 mt-4 " id="cardsh">
   <div class="card-body p-3 ">
     <div class="position-relative">
-      <img src="../../../{{productItem.image}}" (click)="redirectToDetails(productItem.id)" class="card-img-top">
+      <img src="http://127.0.0.1:8000{{productItem.image}}" (click)="redirectToDetails(productItem.id)" class="card-img-top">
       <span class="position-absolute top-0 start-0 badge bg-warning text-black h-2rem">99 %<br>Discount</span>
       <span class="position-absolute top-0 end-0 badge bg-primary text-black h-2rem" *ngIf="productItem.quantity > 0; else outStock">In Stock</span>
       <ng-template #outStock>
