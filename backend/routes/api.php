@@ -52,7 +52,7 @@ Route::post('/sanctum/token', function (Request $request) {
 });
 
 
-Route::prefix('products')->group(function (){
+Route::prefix('products')->middleware('auth:sanctum')->group(function (){
 Route::get('', [productController::class, 'getProducts']);   // get http://127.0.0.1:8000/api/products   (get all products as user)
 Route::get('my', [productController::class, 'getMyProducts']); // get http://127.0.0.1:8000/api/products/my   (get my products as seller)
 Route::post('', [productController::class, 'addProduct']);  // post http://127.0.0.1:8000/api/products   (add new product as seller)
