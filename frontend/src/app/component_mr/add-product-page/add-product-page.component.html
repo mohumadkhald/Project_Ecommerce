@@ -4,11 +4,11 @@
     <img src="../../../favicon.ico" alt="Image" height="50" class="p-3">
     <div class="text-900 text-3xl font-medium p-3 text-white">Add Product</div>
   </div>
-  <form enctype="multipart/form-data">
+  <form (ngSubmit)="submitForm()" #productForm="ngForm" enctype="multipart/form-data">
     <div class="row">
       <div class="col-6">
         <label for="pro1" class="block text-900 font-medium p-2 text-white">Product name</label>
-        <input type="text" id="pro1" placeholder="product name" type="text"  name="title"
+        <input name="title" [(ngModel)]="formData.title" required id="pro1" placeholder="product name" type="text"
           required
           class="w-full p-3 form control border-round">
 
@@ -16,12 +16,12 @@
 
 
         <label for="quant" class="block text-900 font-medium p-2 text-white">Quantity</label>
-        <input type="text" id="quant" name="quantity"  required placeholder="Enter Quantity"  class="w-full p-3 form control border-round">
+        <input type="text" name="quantity" [(ngModel)]="formData.quantity"  required placeholder="Enter Quantity"  class="w-full p-3 form control border-round">
 
         <div class="mb-3">
           <label for="phone" class="form-label text-900 font-medium text-white">Add Image</label>
           <div class="input-group">
-            <input type="file" id="phone" name="phone_number" class="form-control border-round text-white bg-transparent mt-3 pb-4" required>
+            <input type="file" name="image" #imageInput required class="form-control border-round text-white bg-transparent mt-3 pb-4" required>
             <label class="input-group-text bg-transparent text-white border-0" for="phone">
               <i class="fas fa-upload me-2"></i> upload image
             </label>
@@ -37,36 +37,93 @@
       <div class="col-6">
 
         <label for="price" class="block text-900 font-medium p-2 text-white">Price</label>
-        <input id="price" type="number"    name="Price"
+        <input type="text" name="price" [(ngModel)]="formData.price" required
           placeholder="Enter Price" class=" w-full p-3 border-round ">
 
 
-        <label for="" class="block text-900 font-medium p-2 text-white">add discount</label>
-        <input id="discount" type="number"   required  minlength="8"
-          name="discount_confirmation" placeholder="add discount" class=" w-full p-3 border-round ">
+      
 
-
-        <label for="role" class="block text-900 font-medium p-2 text-white">category</label>
+        <!-- <label for="role" class="block text-900 font-medium p-2 text-white">category</label>
         <select class="form-select w-full p-3 bg-transparent " style="color: white;" id="role" name="role"
           required >
           <option class="text-white" value="" disabled selected>Select category</option>
 
           <option value="seller">Saller</option>
           <option value="buyer">User</option>
-        </select>
-
+        </select> -->
+        <div >
+          <label class="block text-900 font-medium p-2 text-white">Category:</label>
+          <input type="text" name="category_id" class=" w-full p-3 border-round " [(ngModel)]="formData.category_id" required>
+        </div>
 
 
 
       </div>
 <div class="">
       <label for="address" class="block text-900 font-medium p-2 text-white">Description</label>
-        <input type="text" id="address" name="address" type="text"  required
+        <input type="text" name="description" [(ngModel)]="formData.description" required
           placeholder="Description" class="w-full py-3 mb-4 mx-1 border-round"></div>
 <div class="">
-        <button label="Sign In" type="submit" class="w-full  mb-3 border-round border py-3  mx-2"><i
+        <button label="Sign In" [disabled]="productForm.invalid"  type="submit" class="w-full  mb-3 border-round border py-3  mx-2"><i
             class="fa fa-plus me-3"></i>Add product</button></div>
     </div>
   </form>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <form (ngSubmit)="submitForm()" #productForm="ngForm" enctype="multipart/form-data">
+  <div>
+    <label>Title:</label>
+    <input type="text" name="title" [(ngModel)]="formData.title" required>
+  </div>
+  <div>
+    <label>Description:</label>
+    <textarea name="description" [(ngModel)]="formData.description" required></textarea>
+  </div>
+  <div>
+    <label>Image:</label>
+    <input type="file" name="image" #imageInput required>
+  </div>
+  <div>
+    <label>Quantity:</label>
+    <input type="text" name="quantity" [(ngModel)]="formData.quantity" required>
+  </div>
+  <div>
+    <label>Price:</label>
+    <input type="text" name="price" [(ngModel)]="formData.price" required>
+  </div>
+  <div>
+    <label>Category:</label>
+    <input type="text" name="category_id" [(ngModel)]="formData.category_id" required>
+  </div>
+  <input type="text" name="id" [(ngModel)]="formData.id" required>
+  <button type="submit" [disabled]="productForm.invalid">Submit</button>
+</form> -->
+
+

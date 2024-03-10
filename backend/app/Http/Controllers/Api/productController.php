@@ -1,22 +1,22 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-use App\Models\Product;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Resources\productResource;
-use App\Models\User;
-
 use Exception;
+use App\Models\User;
+use App\Models\Product;
+use App\Http\Traits\Media;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 // use Illuminate\Http\Request;
 use Psy\Readline\Hoa\FileException;
-use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\productResource;
 use Illuminate\Support\Facades\Storage;
 
 class productController extends Controller
 {
-    
+    use Media;
 //     public function getProducts(){ //buyer
 //         $userId = Auth::id();
 // // dd($userId);
@@ -143,49 +143,23 @@ public function getMyProducts()
 
 public function addProduct(Request $request)
 {
-    try {
-        $request->validate([
-            'description' => ['required', 'string', 'max:255'],
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'title' => ['required', 'string', 'max:255'],
-            'price' => ['required', 'numeric', 'min:0'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'quantity' => ['nullable', 'integer', 'min:0'],
-        ]);
-
+try {
+        // Upload photo
+    $image = $this->upload_photo($request->file('image'), 'products');
+    $data['image'] = $image;
         $product = new Product();
         // $imagePath = $request->file('image')->store('images/posts', 'public');
         $product->description = $request->description;
-        // $product->image = $imagePath;
-        if ($request->hasFile('image')) {
-                $path = 'assets/uploads/products/' . $product->image;
-
-
-            }
-            $file = $request->file('image');
-            $ext = $file->getClientOriginalExtension();
-            $fileName = time() . '.' . $ext;
-
-            try {
-                $file->move('assets/uploads/products', $fileName);
-            } catch (FileException $e) {
-                return response()->json('An error occurred while processing your request', 500);
-            }
-
-            $product->image = $path . $fileName;
+        $product->image = $data['image'];
         $product->title = $request->title;
         $product->price = $request->price;
-        $product->category_id = $request->category_id;
-        $product->quantity = $request->input('quantity', 0);
+        $product->category_id = $request->category_id;  
+        if($request->quantity) $product->quantity = $request->quantity;
         $product->user_id = $request->user()->id;
-        $product->category_id = $request->category_id;
         $product->save();
-
-        // $product->image_path = asset('storage/' . $imagePath);
-
-        return response()->json(['message' => 'Product added successfully', 'product' => $product]);
+    return response()->json('Product Created Sucsess', 200);
     } catch (\Exception $e) {
-        return response()->json(['error' => 'Something went wrong'], 500);
+        return response()->json('Something Was Happend Try Again Later', 500);
     }
 }
 
