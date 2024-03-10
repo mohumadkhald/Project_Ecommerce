@@ -30,7 +30,7 @@ export class MainPageComponent implements OnInit {
     return this.authService.isAuthenticated();
   }
   ngOnInit() {
-    this.ProductsService.getProductsList().subscribe((res: any) => {
+    this.ProductsService.getLatest().subscribe((res: any) => {
       console.log(res.data);
       // Assuming the response structure is { products: [], total: number, skip: number, limit: number }
       if (res && res.data) {

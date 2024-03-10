@@ -100,7 +100,8 @@ Route::put('/{id}', [purchaseController::class, 'deliveredPurchase']);  // put h
 //     Route::delete('/{id}', [postController::class, 'deletePost']);
 //     Route::get('{id}', [postController::class, 'getPost']);
 // });
-Route::middleware('auth:sanctum')->get('user', [purchaseController::class, 'getUser']);  // get http://127.0.0.1:8000/api/user   (get my information as the authenticated user)
+Route::middleware('auth:sanctum')->get('user', [purchaseController::class, 'getUser']);
+// get http://127.0.0.1:8000/api/user   (get my information as the authenticated user)
 // Route::prefix('erequests')->middleware('auth:sanctum')->group(function () {
 //     Route::get('/sent', [erequestController::class, 'sentErequest']);
 //     Route::get('/received', [erequestController::class, 'receivedErequest']);
@@ -123,7 +124,7 @@ Route::middleware('auth:sanctum')->get('user', [purchaseController::class, 'getU
 //     Route::delete('delete_brand/{id}', [BrandsController::class, 'delete_brand']);
 // });
 // category crud
-Route::prefix('categories')->group(function () {
+Route::prefix('categories')->middleware('auth:sanctum')->group(function () {
     Route::get('/index', [CategoryController::class, 'index']);  // get http://127.0.0.1:8000/api/categories/index   (get all categories and its details)
     Route::get('/show/{id}', [CategoryController::class, 'show']);  // get http://127.0.0.1:8000/api/categories/show/id   (get a specific category by its id)
     Route::post('/store', [CategoryController::class, 'store']);  // post http://127.0.0.1:8000/api/categories/store   (create a new category)
