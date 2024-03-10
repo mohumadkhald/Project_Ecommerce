@@ -28,7 +28,7 @@
                                             <div class="d-flex justify-content-between">
                                                 <div class="d-flex flex-row align-items-center">
                                                     <div>
-                                                        <img src="http://127.0.0.1:8000/{{item.product.image}}"
+                                                        <img src="../../../{{item.product.image}}"
                                                             class="card-img-top" alt="Shopping item"
                                                             style="width: 90px;">
                                                     </div>
@@ -117,12 +117,12 @@
 
                                             <form>
                                                 <div class="form-outline form-white mb-3">
-                                                    <input type="text" required id="typeName"
+                                                    <input type="text" required minlength="5" id="typeName"
                                                         class="form-control form-control-lg" placeholder="Name" />
                                                 </div>
 
                                                 <div class="form-outline form-white mb-3">
-                                                    <input type="text" required id="typeText"
+                                                    <input type="number" required maxlength="16" id="typeText"
                                                         class="form-control form-control-lg"
                                                         placeholder="Card Number" />
                                                 </div>
@@ -137,7 +137,7 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-outline form-white">
-                                                            <input type="password" required id="typeText"
+                                                            <input type="password" maxlength="3" required id="typeText"
                                                                 class="form-control form-control-lg"
                                                                 placeholder="CVV" />
                                                         </div>

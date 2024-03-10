@@ -2,7 +2,7 @@
     <div class="header">
         <div class="row r1">
             <div class="col-md-9 abc">
-                <h1>Tyre Mountain Cycle 21</h1>
+                <h1>{{product.title}}</h1>
             </div>
         </div>
     </div>
@@ -20,24 +20,23 @@
                     <li>COD Available (All Over India)</li>
                 </ul>
             </div>
-            <div class="col" style="margin-top: 40px; margin-left: -25px; width: 500px; height: 500px;">
-                <img src="https://assetscdn1.paytm.com/images/catalog/product/K/KI/KIDTORADO-MUSCUTORA65799297FD22C/1564571511644_0.jpg"
-                    class="img-fluid" alt="Product Image">
-                <div class="row mt-3">
-                    <div class="col-3"><img src="https://via.placeholder.com/100" class="img-fluid" alt="Product Image"></div>
-                    <div class="col-3"><img src="https://via.placeholder.com/100" class="img-fluid" alt="Product Image"></div>
-                    <div class="col-3"><img src="https://via.placeholder.com/100" class="img-fluid" alt="Product Image"></div>
-                    <div class="col-3"><img src="https://via.placeholder.com/100" class="img-fluid" alt="Product Image"></div>
-                </div>
+            <div class="col border-round " >
+                <img style="margin-top: 40px; margin-left: -25px; width: 500px; height: 500px;" src="../../../{{product.image}}"
+                    class="img-fluid border-round" alt="Product Image">
+                <!-- <div class="row mt-3">
+                    <div class="col-3"><img class="border-round" src="https://via.placeholder.com/100" class="img-fluid" alt="Product Image"></div>
+                    <div class="col-3"><img class="border-round" src="https://via.placeholder.com/100" class="img-fluid" alt="Product Image"></div>
+                    <div class="col-3"><img class="border-round" src="https://via.placeholder.com/100" class="img-fluid" alt="Product Image"></div>
+                    <div class="col-3"><img class="border-round" src="https://via.placeholder.com/100" class="img-fluid" alt="Product Image"></div>
+                </div> -->
             </div>
-            <div class="  ">
+            <div class="p-4  ">
                 <div>
                     <h5>Price</h5>
-                    <h1>$ 1000</h1>
+                    <h1>$ {{product.price}}</h1>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-outline-primary">ADD TO CART</button>
-                    <button type="button" class="btn btn-warning m-3">BUY NOW</button>
+                    <button type="button" class="btn btn-outline-primary bck text-white">ADD TO CART</button>
                 </div>
                 <div>
                 </div>
