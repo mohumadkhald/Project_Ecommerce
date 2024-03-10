@@ -13,9 +13,8 @@ import { ProductsComponent } from './component_mr/products-page/products.compone
 import { AddProductPageComponent } from './component_mr/add-product-page/add-product-page.component';
 
 export const routes: Routes = [
-
     {path:'',component:MainPageComponent,title: "prinder",canActivate: [authGuardGuard]},
-    { path:'products/:cat', component: ProductsComponent ,title: "shop",canActivate: [authGuardGuard]  },
+    { path:'products/:cat', component: ProductsComponent ,title: "Products",canActivate: [authGuardGuard]  },
     {path:'product/details/:id',component:PageDetailsComponent, title: "Product Details",canActivate: [authGuardGuard]},
     {path:'user/profile',component:ProfileComponent, title: "Profile", canActivate: [authGuardGuard]},
     { path: 'user/login', component: LoginComponent, title: "Login"},
@@ -27,5 +26,4 @@ export const routes: Routes = [
     { path: 'add-product', component: AddProductPageComponent, title: "add Product",canActivate: [authGuardGuard]},
 
     { path: '**', redirectTo: '/notfound' }
-
 ];

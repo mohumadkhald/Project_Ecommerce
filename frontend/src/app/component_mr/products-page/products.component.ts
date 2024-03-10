@@ -8,6 +8,7 @@ import { CardComponent } from '../card/card.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -21,13 +22,19 @@ export class ProductsComponent implements OnInit {
   categories: any[] = [];
   title = 'Products';
   products: Product[] = [];
+  isSeller: boolean = true;
 
   constructor(
     private productsService: ProductsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
+    this.authService.isSeller().then(isSeller => {
+      this.isSeller = isSeller;
+    });
+
     // Extract the ID from route parameters
     this.route.params.subscribe(params => {
       const categoryName = +params['cat']; // Assuming 'id' is the parameter name in your route
@@ -62,5 +69,5 @@ export class ProductsComponent implements OnInit {
     // this.games = this.games.filter(game => game.id !== id)
   }
 
-
+  
  }

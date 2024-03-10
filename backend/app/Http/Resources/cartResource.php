@@ -17,7 +17,7 @@ class cartResource extends JsonResource
         // dd($this);
         $product = $this->product;
         // dd($this->product);
-        $product->image_path = asset('storage/' . $product->image);
+        // $product->image_path = asset('storage/' . $product->image);
         $product2 = new productResource($product);
         $product2->quantity = $this->quantity;
         // $product2->purchase_id = $this->id;
