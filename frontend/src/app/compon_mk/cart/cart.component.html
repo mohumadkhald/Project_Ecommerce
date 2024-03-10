@@ -117,12 +117,12 @@
 
                                             <form>
                                                 <div class="form-outline form-white mb-3">
-                                                    <input type="text" id="typeName"
+                                                    <input type="text" required id="typeName"
                                                         class="form-control form-control-lg" placeholder="Name" />
                                                 </div>
 
                                                 <div class="form-outline form-white mb-3">
-                                                    <input type="text" id="typeText"
+                                                    <input type="text" required id="typeText"
                                                         class="form-control form-control-lg"
                                                         placeholder="Card Number" />
                                                 </div>
@@ -130,43 +130,44 @@
                                                 <div class="row mb-3">
                                                     <div class="col-md-6">
                                                         <div class="form-outline form-white">
-                                                            <input type="text" id="typeExp"
+                                                            <input type="text" required id="typeExp"
                                                                 class="form-control form-control-lg"
                                                                 placeholder="MM/YYYY" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-outline form-white">
-                                                            <input type="password" id="typeText"
+                                                            <input type="password" required id="typeText"
                                                                 class="form-control form-control-lg"
                                                                 placeholder="CVV" />
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <hr class="my-3">
+
+                                                <div class="d-flex justify-content-between mb-3">
+                                                    <p class="mb-0">Subtotal</p>
+                                                    <p class="mb-0">{{totalprice | currency}}</p>
+                                                </div>
+
+                                                <div class="d-flex justify-content-between mb-3">
+                                                    <p class="mb-0">Shipping</p>
+                                                    <p class="mb-0">{{shipping| currency}}</p>
+                                                </div>
+
+                                                <div class="d-flex justify-content-between mb-3">
+                                                    <p class="mb-0">Total(Incl. taxes)</p>
+                                                    <p class="mb-0">{{totalprice + shipping| currency}}</p>
+                                                </div>
+
+                                                <button type="submit" id="btnn" class="btn  btn-block btn-lg" (submit)="clearCart()">
+                                                    <span class="bg-transparent">Checkout <i
+                                                            class="fas fa-long-arrow-alt-right ms-2 bg-transparent"></i></span>
+                                                </button>
 
                                             </form>
 
-                                            <hr class="my-3">
 
-                                            <div class="d-flex justify-content-between mb-3">
-                                                <p class="mb-0">Subtotal</p>
-                                                <p class="mb-0">{{totalprice | currency}}</p>
-                                            </div>
-
-                                            <div class="d-flex justify-content-between mb-3">
-                                                <p class="mb-0">Shipping</p>
-                                                <p class="mb-0">{{shipping| currency}}</p>
-                                            </div>
-
-                                            <div class="d-flex justify-content-between mb-3">
-                                                <p class="mb-0">Total(Incl. taxes)</p>
-                                                <p class="mb-0">{{totalprice + shipping| currency}}</p>
-                                            </div>
-
-                                            <button type="button" id="btnn" class="btn  btn-block btn-lg">
-                                                <span class="bg-transparent">Checkout <i
-                                                        class="fas fa-long-arrow-alt-right ms-2 bg-transparent"></i></span>
-                                            </button>
 
                                         </div>
                                     </div>
